@@ -1,6 +1,6 @@
 # Bang Fashion — Bang Is Valuable
 
-A fully responsive e-commerce website for **Bang Fashionza**, a premium streetwear brand from eMalahleni, South Africa.
+A fully responsive e-commerce website for **Bang Fashion**, a premium streetwear brand from eMalahleni, South Africa.
 
 ![Bang Fashion](frontend/images/tee_tag.jpeg)
 
@@ -33,7 +33,7 @@ bang-fashion/
 ├── .gitignore
 └── README.md
 ## 🚀 Getting Started
-Just open `frontend/index.html` in your browser — no build step needed.
+Just open `frontend/bang_website_updated.html` in your browser — no build step needed.
 
 ## 📱 Contact
 - Instagram: [@bangentertainment](https://www.instagram.com/bangentertainment/)
