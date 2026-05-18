@@ -33,7 +33,7 @@ bang-fashion/
 ├── .gitignore
 └── README.md
 ## 🚀 Getting Started
-Just open `> https://k-a-v-e-l-o.github.io/bang-fashion/` in your browser — no build step needed.
+Just open ` https://k-a-v-e-l-o.github.io/bang-fashion/` in your browser — no build step needed.
 
 ## 📱 Contact
 - Instagram: [@bangentertainment](https://www.instagram.com/bangentertainment/)
