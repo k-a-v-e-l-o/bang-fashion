@@ -1,0 +1,2287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BANG — Bang Is Valuable</title>
+<meta name="description" content="Bang Fashionza — Premium streetwear from eMalahleni, South Africa. Bang Is Valuable. Delivery nationwide.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #080808;
+  --white: #f4f1ec;
+  --cream: #e8e2d9;
+  --gold: #c8a45a;
+  --gold-light: #e0bc7a;
+  --gold-dim: rgba(200,164,90,0.18);
+  --dark: #111;
+  --mid: #1e1e1e;
+  --panel: #161616;
+  --muted: #666;
+  --border: rgba(255,255,255,0.07);
+
+  --bg: #080808;
+  --bg-dark: #111;
+  --bg-mid: #1e1e1e;
+  --text-primary: #f4f1ec;
+  --text-muted: #666;
+  --card-border: rgba(255,255,255,0.07);
+}
+
+[data-theme="light"] {
+  --bg: #f4f1ec;
+  --bg-dark: #ede8e0;
+  --bg-mid: #e4ddd3;
+  --text-primary: #1a1208;
+  --text-muted: #8a7d6b;
+  --card-border: rgba(0,0,0,0.1);
+  --black: #f4f1ec;
+  --white: #1a1208;
+  --dark: #ede8e0;
+  --mid: #e4ddd3;
+  --muted: #8a7d6b;
+  --border: rgba(0,0,0,0.1);
+}
+
+/* ── LIGHT THEME OVERRIDES ── */
+[data-theme="light"] body {
+  background: #f4f1ec;
+  color: #1a1208;
+}
+[data-theme="light"] #hero {
+  background: #f4f1ec;
+}
+[data-theme="light"] .hero-bg {
+  background: linear-gradient(135deg, #ede8e0 0%, #e4ddd3 50%, #f4f1ec 100%);
+}
+[data-theme="light"] .hero-headline,
+[data-theme="light"] .hero-eyebrow,
+[data-theme="light"] .hero-scroll {
+  color: #1a1208;
+}
+[data-theme="light"] .hero-tagline {
+  color: rgba(26,18,8,0.6);
+}
+[data-theme="light"] .hero-scroll-line {
+  background: var(--gold);
+}
+[data-theme="light"] .btn-outline {
+  border-color: rgba(26,18,8,0.3);
+  color: #1a1208;
+}
+[data-theme="light"] nav {
+  background: rgba(244,241,236,0.95);
+}
+[data-theme="light"] nav.scrolled {
+  background: rgba(244,241,236,0.97);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+[data-theme="light"] .nav-logo,
+[data-theme="light"] .nav-links a {
+  color: #1a1208;
+}
+[data-theme="light"] .nav-logo-bb {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+[data-theme="light"] .nav-cart-btn {
+  border-color: rgba(0,0,0,0.15);
+  color: #1a1208;
+}
+[data-theme="light"] #about {
+  background: #ede8e0;
+}
+[data-theme="light"] .about-body {
+  color: rgba(26,18,8,0.7);
+}
+[data-theme="light"] .stat-label {
+  color: #8a7d6b;
+}
+[data-theme="light"] #collections {
+  background: #f4f1ec;
+}
+[data-theme="light"] .collection-card {
+  background: #ede8e0;
+}
+[data-theme="light"] .collection-name {
+  color: #f4f1ec;
+}
+[data-theme="light"] #gallery {
+  background: #ede8e0;
+}
+[data-theme="light"] #why {
+  background: #f4f1ec;
+}
+[data-theme="light"] .why-card {
+  border-color: rgba(0,0,0,0.1);
+  background: #ede8e0;
+}
+[data-theme="light"] .why-title {
+  color: #1a1208;
+}
+[data-theme="light"] .why-text {
+  color: rgba(26,18,8,0.6);
+}
+[data-theme="light"] #reviews {
+  background: #ede8e0;
+}
+[data-theme="light"] .review-card {
+  background: #e4ddd3;
+  border-color: rgba(0,0,0,0.08);
+}
+[data-theme="light"] .review-text {
+  color: rgba(26,18,8,0.7);
+}
+[data-theme="light"] .review-author {
+  color: var(--gold);
+}
+[data-theme="light"] #newsletter {
+  background: linear-gradient(135deg, #d4cdc4 0%, #e4ddd3 100%);
+}
+[data-theme="light"] .newsletter-inner .section-title {
+  color: #1a1208;
+}
+[data-theme="light"] .newsletter-sub {
+  color: rgba(26,18,8,0.6);
+}
+[data-theme="light"] .newsletter-input {
+  background: rgba(26,18,8,0.05);
+  border-color: rgba(0,0,0,0.15);
+  color: #1a1208;
+}
+[data-theme="light"] .newsletter-input::placeholder {
+  color: #8a7d6b;
+}
+[data-theme="light"] #contact {
+  background: #f4f1ec;
+}
+[data-theme="light"] .contact-val,
+[data-theme="light"] .contact-label {
+  color: #1a1208;
+}
+[data-theme="light"] .form-input,
+[data-theme="light"] .form-textarea {
+  background: rgba(26,18,8,0.05);
+  border-color: rgba(0,0,0,0.15);
+  color: #1a1208;
+}
+[data-theme="light"] .form-input::placeholder,
+[data-theme="light"] .form-textarea::placeholder {
+  color: #8a7d6b;
+}
+[data-theme="light"] .form-label,
+[data-theme="light"] .contact-label {
+  color: #8a7d6b;
+}
+[data-theme="light"] .social-btn {
+  border-color: rgba(0,0,0,0.15);
+  color: rgba(26,18,8,0.7);
+}
+[data-theme="light"] footer {
+  background: #1a1208;
+}
+[data-theme="light"] .footer-tagline {
+  color: rgba(244,241,236,0.5);
+}
+[data-theme="light"] .footer-col ul a {
+  color: rgba(244,241,236,0.5);
+}
+[data-theme="light"] .footer-bottom {
+  color: rgba(244,241,236,0.3);
+}
+[data-theme="light"] #modal-overlay .modal-box {
+  background: #ede8e0;
+}
+[data-theme="light"] .modal-name,
+[data-theme="light"] .modal-desc {
+  color: #1a1208;
+}
+[data-theme="light"] .size-btn {
+  border-color: rgba(0,0,0,0.15);
+  color: rgba(26,18,8,0.7);
+}
+[data-theme="light"] #cart-drawer {
+  background: #ede8e0;
+}
+[data-theme="light"] .cart-title,
+[data-theme="light"] .cart-item-name {
+  color: #1a1208;
+}
+[data-theme="light"] .cart-item-size,
+[data-theme="light"] .cart-total-label {
+  color: #8a7d6b;
+}
+[data-theme="light"] .section-title {
+  color: #1a1208;
+}
+[data-theme="light"] .hamburger span {
+  background: #1a1208;
+}
+[data-theme="light"] #loader {
+  background: #f4f1ec;
+}
+[data-theme="light"] .loader-logo {
+  color: #1a1208;
+}
+[data-theme="light"] .marquee-strip {
+  background: var(--gold);
+}:root {
+  --black: #080808;
+  --white: #f4f1ec;
+  --cream: #e8e2d9;
+  --gold: #c8a45a;
+  --gold-light: #e0bc7a;
+  --gold-dim: rgba(200,164,90,0.18);
+  --dark: #111;
+  --mid: #1e1e1e;
+  --panel: #161616;
+  --muted: #666;
+  --border: rgba(255,255,255,0.07);
+
+  --bg: #080808;
+  --bg-dark: #111;
+  --bg-mid: #1e1e1e;
+  --text-primary: #f4f1ec;
+  --text-muted: #666;
+  --card-border: rgba(255,255,255,0.07);
+}
+
+[data-theme="light"] {
+  --bg: #f4f1ec;
+  --bg-dark: #ede8e0;
+  --bg-mid: #e4ddd3;
+  --text-primary: #1a1208;
+  --text-muted: #8a7d6b;
+  --card-border: rgba(0,0,0,0.1);
+  --black: #f4f1ec;
+  --white: #1a1208;
+  --dark: #ede8e0;
+  --mid: #e4ddd3;
+  --muted: #8a7d6b;
+  --border: rgba(0,0,0,0.1);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--black);
+  color: var(--white);
+  overflow-x: hidden;
+  cursor: auto;
+}
+
+  * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M5.5 3.5l13 8-6 1.5-3.5 6z' fill='%23c8a45a' stroke='%23000' stroke-width='1.5'/%3E%3C/svg%3E"), auto !important; 
+
+a { text-decoration: none; color: inherit; }
+img { display: block; max-width: 100%; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+* { cursor: auto !important; }
+a, button, .collection-card, .insta-cell, .cat-btn, .size-btn, .nav-cart-btn, .hamburger { cursor: pointer !important; }
+* { cursor: auto !important; }
+a, button, .collection-card, .insta-cell, .cat-btn, .size-btn, .nav-cart-btn, .hamburger { cursor: pointer !important; }
+
+/* ─── CURSOR ─── */
+
+/* ─── LOADER ─── */
+#loader {
+  position:fixed; inset:0; background:var(--black); z-index:9999;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  transition: opacity .8s ease, visibility .8s ease;
+}
+#loader.done { opacity:0; visibility:hidden; }
+.loader-logo { font-family:'Bebas Neue',sans-serif; font-size:clamp(4rem,10vw,9rem); letter-spacing:.3em; color:var(--white); }
+.loader-sub { font-size:.65rem; letter-spacing:.5em; color:var(--gold); margin-top:.5rem; text-transform:uppercase; }
+.loader-bar-wrap { width:200px; height:1px; background:rgba(255,255,255,.1); margin-top:2.5rem; overflow:hidden; }
+.loader-bar { height:100%; width:0; background:var(--gold); animation: loadbar 1.8s cubic-bezier(.4,0,.2,1) forwards; }
+@keyframes loadbar { to { width:100%; } }
+
+/* ─── NAV ─── */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:1000;
+  padding:0 5%;
+  display:flex; align-items:center; justify-content:space-between;
+  height:72px;
+  transition: background .4s, backdrop-filter .4s, border-bottom .4s;
+}
+nav.scrolled {
+  background: rgba(8,8,8,.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:2rem;
+  letter-spacing:.18em;
+  color:var(--white);
+  display:flex; align-items:center; gap:.6rem;
+}
+.nav-logo-bb {
+  width:38px; height:38px;
+  border:1.5px solid var(--gold);
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:.95rem; color:var(--gold);
+  letter-spacing:.05em;
+}
+.nav-links { display:flex; gap:2.5rem; list-style:none; }
+.nav-links a {
+  font-size:.7rem; letter-spacing:.18em; text-transform:uppercase;
+  color:rgba(255,255,255,.7); font-weight:600;
+  transition: color .25s;
+  position: relative;
+}
+.nav-links a::after {
+  content:''; position:absolute; bottom:-4px; left:0; right:0;
+  height:1px; background:var(--gold);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .3s ease;
+}
+.nav-links a:hover { color:var(--white); }
+.nav-links a:hover::after { transform: scaleX(1); }
+
+.nav-right { display:flex; align-items:center; gap:1.5rem; }
+.nav-cart-btn {
+  width:42px; height:42px;
+  border:1px solid var(--border);
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--white); font-size:1rem;
+  transition: border-color .25s, background .25s;
+}
+.nav-cart-btn:hover { border-color:var(--gold); background:var(--gold-dim); }
+.cart-count {
+  position:absolute; top:-5px; right:-5px;
+  width:16px; height:16px; border-radius:50%;
+  background:var(--gold); color:var(--black);
+  font-size:.55rem; font-weight:700;
+  display:flex; align-items:center; justify-content:center;
+}
+.nav-cart-wrap { position:relative; }
+.hamburger { display:none; flex-direction:column; gap:5px; }
+.hamburger span { display:block; width:24px; height:1.5px; background:var(--white); transition:.3s; }
+
+.theme-toggle {
+  width:38px; height:38px;
+  border:1px solid var(--border);
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--white); font-size:1rem;
+  transition: border-color .25s, background .25s, transform .4s;
+  background: transparent;
+}
+.theme-toggle:hover { border-color:var(--gold); background:var(--gold-dim); }
+[data-theme="light"] .theme-toggle { color: var(--white); }
+
+/* ─── HERO ─── */
+#hero {
+  height:100vh; min-height:600px;
+  position:relative; overflow:hidden;
+  display:flex; align-items:center;
+}
+.hero-bg {
+  position:absolute; inset:0;
+  background: linear-gradient(135deg, #0d0d0d 0%, #1a1208 50%, #080808 100%);
+}
+.hero-grid-overlay {
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(200,164,90,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,164,90,.04) 1px, transparent 1px);
+  background-size:60px 60px;
+  transition: opacity .4s;
+}
+.hero-noise {
+  position:absolute; inset:0; opacity:.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px;
+  transition: opacity .4s;
+}
+[data-theme="light"] .hero-grid-overlay {
+  background-image:
+    linear-gradient(rgba(26,18,8,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26,18,8,.06) 1px, transparent 1px);
+}
+[data-theme="light"] .hero-noise {
+  opacity: .02;
+}
+[data-theme="light"] .hero-badge {
+  background: var(--gold);
+  color: #1a1208;
+}
+[data-theme="light"] .hero-img-main,
+[data-theme="light"] .hero-img-sec {
+  border-color: rgba(0,0,0,0.1);
+}
+[data-theme="light"] #mobile-menu {
+  background: #f4f1ec;
+}
+[data-theme="light"] .mobile-nav-link {
+  color: rgba(26,18,8,0.7);
+}
+[data-theme="light"] .mobile-nav-link:hover {
+  color: var(--gold);
+}
+[data-theme="light"] .mobile-close {
+  color: #8a7d6b;
+}
+[data-theme="light"] #toast {
+  background: var(--gold);
+  color: #1a1208;
+}
+[data-theme="light"] .cart-overlay {
+  background: rgba(26,18,8,0.6);
+}
+[data-theme="light"] .cart-header {
+  border-color: rgba(0,0,0,0.1);
+}
+[data-theme="light"] .cart-item {
+  border-color: rgba(0,0,0,0.08);
+}
+[data-theme="light"] .cart-footer {
+  border-color: rgba(0,0,0,0.1);
+}
+[data-theme="light"] .why-card::before {
+  background: var(--gold);
+}
+[data-theme="light"] .insta-hover {
+  background: rgba(244,241,236,0.5);
+}
+[data-theme="light"] .section-eyebrow {
+  color: var(--gold);
+}
+[data-theme="light"] .section-line {
+  background: var(--gold);
+}
+[data-theme="light"] .about-img-caption {
+  background: var(--gold);
+  color: #1a1208;
+}
+/* ─── CATEGORY FILTER BAR ─── */
+.category-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin-bottom: 2.5rem;
+}
+.cat-btn {
+  padding: .55rem 1.4rem;
+  border: 1px solid rgba(200,164,90,.4);
+  color: #1a1208;
+  font-family: 'Montserrat', sans-serif;
+  font-size: .65rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: border-color .25s, color .25s, background .25s;
+  cursor: pointer;
+}
+html[data-theme="light"] button.cat-btn {
+  color: #1a1208 !important;
+  border: 1.5px solid #1a1208 !important;
+  background: transparent !important;
+}
+.cat-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.cat-btn.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--black);
+}
+html[data-theme="light"] button.cat-btn {
+  color: #f4f1ec !important;
+  border: 2px solid #1a1208 !important;
+  background: #2c1f10 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 0 0 1px #1a1208 !important;
+}
+html[data-theme="light"] button.cat-btn:hover {
+  background: var(--gold) !important;
+  border-color: var(--gold) !important;
+  color: #1a1208 !important;
+  box-shadow: none !important;
+}
+html[data-theme="light"] button.cat-btn.active {
+  background: var(--gold) !important;
+  border-color: var(--gold) !important;
+  color: #1a1208 !important;
+  box-shadow: none !important;
+}
+html[data-theme="light"] button.cat-btn.active {
+  background: var(--gold) !important;
+  border-color: var(--gold) !important;
+  color: #1a1208 !important;
+}
+
+.collection-badge {
+  position:absolute; top:1rem; right:1rem;
+  background:var(--gold); color:var(--black);
+  font-size:.55rem; letter-spacing:.2em; font-weight:700;
+  padding:.35rem .7rem; text-transform:uppercase;
+}
+[data-theme="light"] .collection-badge {
+  background: var(--gold);
+  color: #1a1208;
+}
+[data-theme="light"] .footer-brand-name {
+  color: #f4f1ec;
+}
+[data-theme="light"] .footer-col h4 {
+  color: var(--gold);
+}
+[data-theme="light"] .footer-social a {
+  border-color: rgba(244,241,236,0.2);
+  color: rgba(244,241,236,0.5);
+}
+[data-theme="light"] .modal-cat {
+  color: var(--gold);
+}
+[data-theme="light"] .modal-price {
+  color: var(--gold);
+}
+[data-theme="light"] .modal-sizes-label {
+  color: #8a7d6b;
+}
+.hero-content {
+  position:relative; z-index:2;
+  padding:0 5%; max-width:1400px; margin:0 auto; width:100%;
+  display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:4rem;
+}
+.hero-text { animation: fadeUp .9s .2s both; }
+.hero-eyebrow {
+  font-size:.65rem; letter-spacing:.6em; color:var(--gold);
+  text-transform:uppercase; font-weight:700; margin-bottom:1.5rem;
+}
+.hero-headline {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(5rem,11vw,10rem);
+  line-height:.9; letter-spacing:.05em;
+  color:var(--white);
+  margin-bottom:1rem;
+  overflow: visible;
+  width: 100%;
+}
+[data-theme="light"] .hero-headline {
+  color: #1a1208;
+}
+[data-theme="light"] .hero-headline span {
+  color: var(--gold);
+}
+.hero-headline span { color:var(--gold); }
+.hero-tagline {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.1rem,2vw,1.5rem);
+  font-style:italic; color:rgba(255,255,255,.55);
+  margin-bottom:2.5rem; font-weight:300; letter-spacing:.05em;
+}
+.hero-cta-group { display:flex; gap:1rem; flex-wrap:wrap; }
+.btn-primary {
+  padding:.9rem 2.2rem;
+  background:var(--gold);
+  color:var(--black);
+  font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; font-weight:700;
+  transition: background .25s, transform .2s;
+  display:inline-flex; align-items:center; gap:.6rem;
+}
+.btn-primary:hover { background:var(--gold-light); transform:translateY(-2px); }
+.btn-outline {
+  padding:.9rem 2.2rem;
+  border:1px solid rgba(255,255,255,.25);
+  color:var(--white);
+  font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; font-weight:600;
+  transition: border-color .25s, transform .2s;
+}
+.btn-outline:hover { border-color:var(--gold); transform:translateY(-2px); }
+
+.hero-visual { animation: fadeUp .9s .45s both; position:relative; }
+.hero-img-stack {
+  position:relative; height:520px;
+}
+.hero-img-main {
+  position:absolute; right:0; top:0;
+  width:300px; height:420px;
+  object-fit:cover; object-position:top center;
+  border:1px solid var(--border);
+}
+.hero-img-sec {
+  position:absolute; left:0; bottom:0;
+  width:220px; height:300px;
+  object-fit:cover; object-position:top center;
+  border:1px solid var(--border);
+}
+.hero-badge {
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:100px; height:100px; border-radius:50%;
+  background:var(--gold);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  z-index:3; color:var(--black);
+  font-size:.5rem; letter-spacing:.2em; font-weight:700; text-transform:uppercase;
+  text-align:center; line-height:1.6;
+  animation: spin 20s linear infinite;
+}
+@keyframes spin { to { transform:translate(-50%,-50%) rotate(360deg); } }
+.hero-scroll {
+  position:absolute; bottom:2.5rem; left:5%;
+  display:flex; align-items:center; gap:.8rem;
+  font-size:.6rem; letter-spacing:.3em; color:var(--muted); text-transform:uppercase;
+  animation: fadeUp .9s .8s both;
+}
+.hero-scroll-line { width:40px; height:1px; background:var(--gold); }
+
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(30px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+/* ─── MARQUEE ─── */
+.marquee-strip {
+  background:var(--gold); padding:.85rem 0; overflow:hidden;
+  border-top:1px solid rgba(0,0,0,.1); border-bottom:1px solid rgba(0,0,0,.1);
+}
+.marquee-track {
+  display:flex; gap:3rem; width:max-content;
+  animation: marquee 18s linear infinite;
+}
+.marquee-item {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1rem; letter-spacing:.3em;
+  color:var(--black); white-space:nowrap;
+  display:flex; align-items:center; gap:1rem;
+}
+.marquee-dot { width:5px; height:5px; border-radius:50%; background:rgba(0,0,0,.3); }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* ─── SECTIONS ─── */
+.section { padding:6rem 5%; max-width:1400px; margin:0 auto; }
+.section-header { margin-bottom:4rem; }
+.section-eyebrow {
+  font-size:.62rem; letter-spacing:.55em; color:var(--gold);
+  text-transform:uppercase; font-weight:700; margin-bottom:.9rem;
+}
+.section-title {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.5rem,5vw,4.5rem); letter-spacing:.06em;
+  line-height:1; color:var(--white);
+}
+.section-line {
+  width:60px; height:2px; background:var(--gold); margin-top:1.2rem;
+}
+
+/* ─── ABOUT ─── */
+#about { padding:7rem 5%; background: var(--dark); }
+.about-inner { max-width:1400px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:center; }
+.about-text .section-title { margin-bottom:1.5rem; }
+.about-body {
+  font-size:.92rem; line-height:1.9; color:rgba(255,255,255,.65);
+  margin-bottom:1.5rem; font-weight:300;
+}
+.about-stats {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; margin-top:3rem;
+  border-top:1px solid var(--border); padding-top:2.5rem;
+}
+.stat-num {
+  font-family:'Bebas Neue',sans-serif; font-size:2.8rem; color:var(--gold); letter-spacing:.05em;
+}
+.stat-label { font-size:.62rem; letter-spacing:.25em; color:var(--muted); text-transform:uppercase; margin-top:.3rem; }
+.about-visual { position:relative; }
+.about-img {
+  width:100%; height:560px; object-fit:cover; object-position:top center;
+  border:1px solid var(--border);
+  background: var(--mid);
+}
+[data-theme="light"] .about-img {
+  border-color: rgba(0,0,0,0.1);
+  background: #e4ddd3;
+}
+.about-img-caption {
+  position:absolute; bottom:-1.5rem; right:0;
+  background:var(--gold); color:var(--black);
+  padding:.6rem 1.2rem;
+  font-size:.6rem; letter-spacing:.25em; font-weight:700; text-transform:uppercase;
+}
+
+/* ─── COLLECTIONS ─── */
+#collections { padding:7rem 5%; }
+.collections-inner { max-width:1400px; margin:0 auto; }
+.collection-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));
+  gap:1.5rem;
+  margin-top:3.5rem;
+}
+.collection-card {
+  background:var(--black);
+  position:relative; overflow:hidden;
+  aspect-ratio:unset;
+  cursor:pointer;
+  display:flex; flex-direction:column;
+}
+.collection-card-img-wrap {
+  position:relative; overflow:hidden;
+  aspect-ratio:3/4; flex-shrink:0;
+}
+.collection-card-img-wrap img {
+  width:100%; height:100%; object-fit:cover; object-position:top center;
+  transition:transform .6s cubic-bezier(.25,.46,.45,.94);
+  display:block;
+}
+.collection-card:hover .collection-card-img-wrap img { transform:scale(1.07); }
+.collection-card-body {
+  padding:1rem 1rem 1.2rem;
+  display:flex; flex-direction:column; gap:.4rem;
+}
+.collection-card-cat {
+  font-size:.58rem; letter-spacing:.25em; text-transform:uppercase;
+  color:var(--gold); font-weight:700;
+}
+.collection-card-name {
+  font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:.08em;
+  color:var(--white); line-height:1.1;
+}
+.collection-card-bottom {
+  display:flex; align-items:center; justify-content:space-between; margin-top:.4rem;
+}
+.collection-card-price {
+  font-size:.85rem; color:var(--gold); font-weight:700;
+}
+.collection-card-btn {
+  padding:.5rem 1.1rem;
+  background:var(--white); color:var(--black);
+  font-size:.58rem; letter-spacing:.18em; font-weight:700; text-transform:uppercase;
+  border:none; cursor:pointer;
+  transition:background .2s, color .2s;
+}
+.collection-card-btn:hover { background:var(--gold); color:var(--black); }
+[data-theme="light"] .collection-card-name { color:#1a1208; }
+[data-theme="light"] .collection-card-btn { background:#1a1208; color:#f4f1ec; }
+[data-theme="light"] .collection-card-btn:hover { background:var(--gold); color:#1a1208; }
+.collection-card img {
+  width:100%; height:100%; object-fit:cover; object-position:top center;
+  transition:transform .6s cubic-bezier(.25,.46,.45,.94);
+}
+.collection-card:hover img { transform:scale(1.07); }
+.collection-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(8,8,8,.92) 0%, transparent 55%);
+  transition:opacity .4s;
+}
+.collection-card:hover .collection-overlay { opacity:.9; }
+.collection-info {
+  position:absolute; bottom:0; left:0; right:0;
+  padding:1.8rem 1.5rem;
+  transform:translateY(0);
+}
+.collection-name {
+  font-family:'Bebas Neue',sans-serif; font-size:1.6rem; letter-spacing:.1em;
+  color:var(--white); margin-bottom:.4rem;
+}
+.collection-price {
+  font-size:.75rem; color:var(--gold); font-weight:600; letter-spacing:.1em;
+}
+.collection-cta {
+  display:inline-flex; align-items:center; gap:.5rem; margin-top:1rem;
+  font-size:.6rem; letter-spacing:.25em; font-weight:700; text-transform:uppercase;
+  color:var(--gold); opacity:0;
+  transform:translateY(8px);
+  transition:opacity .3s .05s, transform .3s .05s;
+}
+.collection-card:hover .collection-cta { opacity:1; transform:translateY(0); }
+.collection-badge {
+  position:absolute; top:1rem; right:1rem;
+  background:var(--gold); color:var(--black);
+  font-size:.55rem; letter-spacing:.2em; font-weight:700;
+  padding:.35rem .7rem; text-transform:uppercase;
+}
+
+/* ─── PRODUCT MODAL ─── */
+#modal-overlay {
+  position:fixed; inset:0; z-index:5000;
+  background:rgba(0,0,0,.88); backdrop-filter:blur(10px);
+  display:flex; align-items:center; justify-content:center;
+  padding:2rem;
+  opacity:0; visibility:hidden;
+  transition:opacity .35s, visibility .35s;
+}
+#modal-overlay.open { opacity:1; visibility:visible; }
+.modal-box {
+  background:var(--dark); border:1px solid var(--border);
+  max-width:900px; width:100%;
+  display:grid; grid-template-columns:1fr 1fr;
+  max-height:90vh; overflow:hidden;
+  transform:scale(.95) translateY(20px);
+  transition:transform .35s cubic-bezier(.25,.46,.45,.94);
+}
+#modal-overlay.open .modal-box { transform:scale(1) translateY(0); }
+.modal-gallery { position:relative; overflow:hidden; }
+.modal-gallery img { width:100%; height:100%; object-fit:cover; object-position:top center; min-height:400px; }
+.modal-close {
+  position:absolute; top:1rem; right:1rem;
+  width:36px; height:36px; border-radius:50%;
+  background:rgba(0,0,0,.6); color:var(--white);
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.1rem; z-index:10;
+}
+.modal-prev, .modal-next {
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:38px; height:38px; border-radius:50%;
+  background:rgba(0,0,0,.55); color:var(--white);
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.6rem; z-index:10;
+  transition:background .2s;
+  line-height:1;
+}
+.modal-prev { left:.7rem; }
+.modal-next { right:.7rem; }
+.modal-prev:hover, .modal-next:hover { background:var(--gold); color:var(--black); }
+.modal-prev[style*="none"], .modal-next[style*="none"] { display:none; }
+.modal-dots {
+  position:absolute; bottom:.7rem; left:0; right:0;
+  display:flex; justify-content:center; gap:.4rem;
+}
+.modal-dot {
+  width:6px; height:6px; border-radius:50%;
+  background:rgba(255,255,255,.35); transition:background .2s;
+}
+.modal-dot.active { background:var(--gold); }
+.modal-body { padding:3rem 2.5rem; overflow-y:auto; display:flex; flex-direction:column; }
+.modal-cat { font-size:.6rem; letter-spacing:.4em; color:var(--gold); text-transform:uppercase; font-weight:700; }
+.modal-name { font-family:'Bebas Neue',sans-serif; font-size:2.5rem; letter-spacing:.08em; margin:.5rem 0 1rem; }
+.modal-price { font-size:1.5rem; color:var(--gold); font-weight:700; margin-bottom:1.5rem; }
+.modal-desc { font-size:.85rem; line-height:1.8; color:rgba(255,255,255,.6); margin-bottom:2rem; font-weight:300; }
+.modal-sizes { margin-bottom:2rem; }
+.modal-sizes-label { font-size:.6rem; letter-spacing:.3em; text-transform:uppercase; color:var(--muted); margin-bottom:.8rem; font-weight:700; }
+.size-grid { display:flex; gap:.5rem; flex-wrap:wrap; }
+.size-btn {
+  width:46px; height:46px;
+  border:1px solid var(--border); color:rgba(255,255,255,.6);
+  font-size:.75rem; font-weight:600; letter-spacing:.05em;
+  transition:border-color .2s, color .2s, background .2s;
+}
+.size-btn.active, .size-btn:hover { border-color:var(--gold); color:var(--gold); background:var(--gold-dim); }
+.modal-actions { display:flex; flex-direction:column; gap:.8rem; margin-top:auto; }
+.btn-add-cart {
+  padding:1rem; background:var(--gold); color:var(--black);
+  font-size:.7rem; letter-spacing:.25em; text-transform:uppercase; font-weight:700;
+  transition:background .25s;
+}
+.btn-add-cart:hover { background:var(--gold-light); }
+.btn-whatsapp {
+  padding:1rem; border:1px solid rgba(37,211,102,.5); color:rgb(37,211,102);
+  font-size:.7rem; letter-spacing:.25em; text-transform:uppercase; font-weight:600;
+  display:flex; align-items:center; justify-content:center; gap:.5rem;
+  transition:background .25s, border-color .25s;
+}
+.btn-whatsapp:hover { background:rgba(37,211,102,.1); border-color:rgb(37,211,102); }
+
+/* ─── INSTAGRAM GALLERY ─── */
+#gallery { padding:7rem 5%; background:var(--dark); }
+.gallery-inner { max-width:1400px; margin:0 auto; }
+.insta-grid {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  grid-template-rows:auto auto;
+  gap:4px;
+  margin-top:3rem;
+}
+.insta-cell {
+  overflow:hidden; position:relative; cursor:none;
+  aspect-ratio:1;
+}
+.insta-cell:first-child {
+  grid-column:span 2; grid-row:span 2; aspect-ratio:auto;
+}
+.insta-cell img {
+  width:100%; height:100%; object-fit:cover;
+  transition:transform .5s cubic-bezier(.25,.46,.45,.94);
+}
+.insta-cell:hover img { transform:scale(1.06); }
+.insta-hover {
+  position:absolute; inset:0;
+  background:rgba(8,8,8,.5);
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; transition:opacity .3s;
+}
+.insta-cell:hover .insta-hover { opacity:1; }
+.insta-hover svg { width:28px; height:28px; fill:var(--white); }
+.insta-follow-row {
+  display:flex; align-items:center; justify-content:center; gap:1.5rem;
+  margin-top:2.5rem;
+}
+.insta-handle {
+  font-size:.8rem; letter-spacing:.2em; color:rgba(255,255,255,.6);
+  font-weight:500;
+}
+.insta-handle span { color:var(--gold); }
+
+/* ─── WHY BANG ─── */
+#why { padding:7rem 5%; }
+.why-inner { max-width:1400px; margin:0 auto; }
+.why-grid {
+  display:grid; grid-template-columns:repeat(4,1fr); gap:2rem; margin-top:4rem;
+}
+.why-card {
+  padding:2.5rem 2rem;
+  border:1px solid var(--border);
+  position:relative; overflow:hidden;
+  transition:border-color .3s;
+}
+.why-card::before {
+  content:''; position:absolute; bottom:0; left:0; right:0;
+  height:2px; background:var(--gold);
+  transform:scaleX(0); transform-origin:left;
+  transition:transform .4s ease;
+}
+.why-card:hover { border-color:rgba(200,164,90,.3); }
+.why-card:hover::before { transform:scaleX(1); }
+.why-icon {
+  font-size:1.8rem; margin-bottom:1.5rem;
+  color:var(--gold);
+}
+.why-title {
+  font-family:'Bebas Neue',sans-serif; font-size:1.4rem;
+  letter-spacing:.1em; margin-bottom:.8rem;
+}
+.why-text { font-size:.8rem; line-height:1.8; color:rgba(255,255,255,.55); font-weight:300; }
+
+/* ─── SOCIAL PROOF / REVIEWS ─── */
+#reviews { padding:7rem 5%; background:var(--dark); }
+.reviews-inner { max-width:1400px; margin:0 auto; }
+.reviews-track { display:flex; gap:1.5rem; margin-top:3.5rem; overflow-x:auto; padding-bottom:1rem; scrollbar-width:none; }
+.reviews-track::-webkit-scrollbar { display:none; }
+.review-card {
+  min-width:320px; padding:2rem;
+  border:1px solid var(--border);
+  flex-shrink:0; position:relative;
+  background:var(--mid);
+}
+.review-stars { color:var(--gold); font-size:.9rem; margin-bottom:1rem; letter-spacing:.1em; }
+.review-text { font-size:.85rem; line-height:1.8; color:rgba(255,255,255,.65); margin-bottom:1.5rem; font-weight:300; font-style:italic; }
+.review-author { font-size:.65rem; letter-spacing:.25em; color:var(--gold); text-transform:uppercase; font-weight:700; }
+
+/* ─── NEWSLETTER ─── */
+#newsletter { padding:7rem 5%; background: linear-gradient(135deg, #1a1208 0%, #0d0d0d 100%); }
+.newsletter-inner {
+  max-width:700px; margin:0 auto; text-align:center;
+}
+.newsletter-inner .section-title { margin-bottom:1rem; }
+.newsletter-inner .section-line { margin:1.2rem auto; }
+.newsletter-sub {
+  font-size:.85rem; color:rgba(255,255,255,.5); line-height:1.8;
+  margin-bottom:2.5rem; font-weight:300;
+}
+.newsletter-form { display:flex; gap:0; max-width:500px; margin:0 auto; }
+.newsletter-input {
+  flex:1; padding:1rem 1.2rem;
+  background:rgba(255,255,255,.05); border:1px solid var(--border);
+  color:var(--white); font-family:'Montserrat',sans-serif; font-size:.8rem;
+  outline:none;
+  transition:border-color .3s;
+}
+.newsletter-input::placeholder { color:var(--muted); }
+.newsletter-input:focus { border-color:var(--gold); }
+.newsletter-submit {
+  padding:1rem 1.8rem;
+  background:var(--gold); color:var(--black);
+  font-size:.65rem; letter-spacing:.25em; font-weight:700; text-transform:uppercase;
+  transition:background .25s;
+}
+.newsletter-submit:hover { background:var(--gold-light); }
+
+/* ─── CONTACT ─── */
+#contact { padding:7rem 5%; }
+.contact-inner { max-width:1400px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start; }
+.contact-details { margin-top:3rem; }
+.contact-item { display:flex; align-items:flex-start; gap:1.2rem; margin-bottom:2rem; }
+.contact-icon { color:var(--gold); font-size:1.2rem; margin-top:.1rem; flex-shrink:0; }
+.contact-label { font-size:.6rem; letter-spacing:.3em; color:var(--muted); text-transform:uppercase; font-weight:700; margin-bottom:.3rem; }
+.contact-val { font-size:.9rem; color:rgba(255,255,255,.8); font-weight:300; }
+.contact-socials { display:flex; gap:1rem; margin-top:3rem; }
+.social-btn {
+  padding:.7rem 1.4rem; border:1px solid var(--border);
+  font-size:.65rem; letter-spacing:.2em; text-transform:uppercase; font-weight:600;
+  display:flex; align-items:center; gap:.6rem; color:rgba(255,255,255,.7);
+  transition:border-color .25s, color .25s, background .25s;
+}
+.social-btn:hover { border-color:var(--gold); color:var(--gold); background:var(--gold-dim); }
+.contact-form { display:flex; flex-direction:column; gap:1rem; }
+.form-group { display:flex; flex-direction:column; gap:.5rem; }
+.form-label { font-size:.6rem; letter-spacing:.3em; color:var(--muted); text-transform:uppercase; font-weight:700; }
+.form-input, .form-textarea {
+  padding:.9rem 1rem;
+  background:rgba(255,255,255,.04); border:1px solid var(--border);
+  color:var(--white); font-family:'Montserrat',sans-serif; font-size:.85rem;
+  outline:none; transition:border-color .3s; resize:none;
+}
+.form-input:focus, .form-textarea:focus { border-color:var(--gold); }
+.form-textarea { height:130px; }
+.form-submit {
+  padding:1rem; background:var(--gold); color:var(--black);
+  font-size:.7rem; letter-spacing:.25em; font-weight:700; text-transform:uppercase;
+  transition:background .25s; align-self:flex-start; padding-left:2.5rem; padding-right:2.5rem;
+}
+.form-submit:hover { background:var(--gold-light); }
+
+/* ─── FOOTER ─── */
+footer {
+  background:var(--dark); border-top:1px solid var(--border);
+  padding:4rem 5% 2rem;
+}
+.footer-inner { max-width:1400px; margin:0 auto; }
+.footer-grid {
+  display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3rem;
+  padding-bottom:3rem; border-bottom:1px solid var(--border);
+  margin-bottom:2rem;
+}
+.footer-brand-name {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:2.5rem; letter-spacing:.2em; color:var(--white); margin-bottom:1rem;
+}
+.footer-tagline { font-size:.8rem; color:rgba(255,255,255,.4); line-height:1.8; max-width:250px; margin-bottom:2rem; font-weight:300; }
+.footer-social { display:flex; gap:.8rem; }
+.footer-social a {
+  width:38px; height:38px; border:1px solid var(--border); border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  color:rgba(255,255,255,.5); font-size:.85rem;
+  transition:border-color .25s, color .25s;
+}
+.footer-social a:hover { border-color:var(--gold); color:var(--gold); }
+.footer-col h4 {
+  font-size:.6rem; letter-spacing:.4em; text-transform:uppercase; color:var(--gold);
+  font-weight:700; margin-bottom:1.5rem;
+}
+.footer-col ul { list-style:none; display:flex; flex-direction:column; gap:.8rem; }
+.footer-col ul a { font-size:.8rem; color:rgba(255,255,255,.45); font-weight:300; transition:color .2s; }
+.footer-col ul a:hover { color:var(--gold); }
+.footer-bottom {
+  display:flex; align-items:center; justify-content:space-between;
+  font-size:.65rem; color:rgba(255,255,255,.25); letter-spacing:.1em;
+}
+.footer-bottom span { color:var(--gold); }
+
+/* ─── TOAST ─── */
+#toast {
+  position:fixed; bottom:2rem; left:50%; transform:translateX(-50%) translateY(100px);
+  background:var(--gold); color:var(--black);
+  padding:.8rem 2rem; font-size:.75rem; letter-spacing:.2em; font-weight:700; text-transform:uppercase;
+  z-index:9999; transition:transform .4s cubic-bezier(.25,.46,.45,.94);
+  white-space:nowrap;
+}
+#toast.show { transform:translateX(-50%) translateY(0); }
+
+/* ─── CART DRAWER ─── */
+#cart-drawer {
+  position:fixed; right:0; top:0; bottom:0; width:400px;
+  background:var(--dark); z-index:8000;
+  border-left:1px solid var(--border);
+  transform:translateX(100%); transition:transform .4s cubic-bezier(.25,.46,.45,.94);
+  display:flex; flex-direction:column;
+  padding:2rem;
+}
+#cart-drawer.open { transform:translateX(0); }
+.cart-overlay {
+  position:fixed; inset:0; background:rgba(0,0,0,.7); z-index:7999;
+  opacity:0; visibility:hidden; transition:.4s;
+}
+.cart-overlay.open { opacity:1; visibility:visible; }
+.cart-header {
+  display:flex; justify-content:space-between; align-items:center;
+  margin-bottom:2rem; padding-bottom:1rem; border-bottom:1px solid var(--border);
+}
+.cart-title { font-family:'Bebas Neue',sans-serif; font-size:1.8rem; letter-spacing:.1em; }
+.cart-close { color:var(--muted); font-size:1.2rem; transition:color .2s; }
+.cart-close:hover { color:var(--white); }
+.cart-items { flex:1; overflow-y:auto; scrollbar-width:thin; scrollbar-color:var(--border) transparent; }
+.cart-item {
+  display:grid; grid-template-columns:70px 1fr auto;
+  gap:1rem; padding:1rem 0; border-bottom:1px solid var(--border);
+  align-items:center;
+}
+.cart-item-img { width:70px; height:90px; object-fit:cover; object-position:top; }
+.cart-item-name { font-size:.8rem; font-weight:600; margin-bottom:.3rem; }
+.cart-item-size { font-size:.65rem; color:var(--muted); letter-spacing:.1em; }
+.cart-item-price { font-size:.9rem; color:var(--gold); font-weight:700; }
+.cart-remove { font-size:.7rem; color:var(--muted); margin-top:.5rem; cursor:none; transition:color .2s; }
+.cart-remove:hover { color:#e74c3c; }
+.cart-footer { border-top:1px solid var(--border); padding-top:1.5rem; margin-top:1rem; }
+.cart-total-row { display:flex; justify-content:space-between; margin-bottom:1.5rem; font-weight:700; }
+.cart-total-label { font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); }
+.cart-total-val { font-size:1.2rem; color:var(--gold); }
+.cart-checkout {
+  width:100%; padding:1rem;
+  background:var(--gold); color:var(--black);
+  font-size:.7rem; letter-spacing:.25em; font-weight:700; text-transform:uppercase;
+  margin-bottom:.8rem; transition:background .25s;
+}
+.cart-checkout:hover { background:var(--gold-light); }
+.cart-wa-order {
+  width:100%; padding:.9rem;
+  border:1px solid rgba(37,211,102,.4); color:rgb(37,211,102);
+  font-size:.65rem; letter-spacing:.2em; text-transform:uppercase; font-weight:600;
+  display:flex; align-items:center; justify-content:center; gap:.5rem;
+  transition:.25s;
+}
+.cart-wa-order:hover { background:rgba(37,211,102,.1); border-color:rgb(37,211,102); }
+.cart-empty {
+  flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  color:var(--muted); text-align:center;
+}
+.cart-empty-icon { font-size:3rem; margin-bottom:1rem; }
+.cart-empty p { font-size:.8rem; letter-spacing:.1em; }
+
+/* ─── MOBILE MENU ─── */
+#mobile-menu {
+  position:fixed; inset:0; background:var(--black);
+  z-index:4000; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:2.5rem; transform:translateX(100%);
+  transition:transform .4s cubic-bezier(.25,.46,.45,.94);
+}
+#mobile-menu.open { transform:translateX(0); }
+.mobile-nav-link {
+  font-family:'Bebas Neue',sans-serif; font-size:3.5rem; letter-spacing:.15em;
+  color:rgba(255,255,255,.7); transition:color .2s;
+}
+.mobile-nav-link:hover { color:var(--gold); }
+.mobile-close {
+  position:absolute; top:1.5rem; right:5%;
+  font-size:1.5rem; color:var(--muted);
+}
+
+/* ─── SCROLL ANIMATIONS ─── */
+.reveal {
+  opacity:0; transform:translateY(40px);
+  transition:opacity .7s ease, transform .7s ease;
+}
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1024px) {
+  .hero-content { grid-template-columns:1fr; }
+  .hero-visual { display:none; }
+  .about-inner { grid-template-columns:1fr; }
+  .why-grid { grid-template-columns:repeat(2,1fr); }
+  .footer-grid { grid-template-columns:1fr 1fr; gap:2rem; }
+  .contact-inner { grid-template-columns:1fr; }
+  .insta-grid { grid-template-columns:repeat(3,1fr); }
+  .insta-cell:first-child { grid-column:span 1; grid-row:span 1; }
+}
+
+@media(max-width:768px) {
+  .nav-links { display:none; }
+  .hamburger { display:flex; }
+
+  /* HERO */
+  #hero { min-height:100svh; padding-top:72px; }
+  .hero-content { padding:0 6%; gap:2rem; }
+  .hero-headline { font-size:3.8rem; line-height:.88; }
+  .hero-tagline { font-size:1rem; margin-bottom:2rem; }
+  .hero-eyebrow { font-size:.6rem; letter-spacing:.4em; margin-bottom:1rem; }
+  .hero-cta-group { gap:.8rem; }
+  .btn-primary, .btn-outline { padding:.8rem 1.6rem; font-size:.65rem; }
+  .hero-visual { display:none; }
+
+  /* MARQUEE */
+  .marquee-item { font-size:.85rem; }
+
+  /* SECTIONS */
+  .section { padding:4rem 6%; }
+  #about, #collections, #why, #gallery, #reviews, #newsletter, #contact { padding:4rem 6%; }
+  .section-title { font-size:2.2rem; }
+  .about-inner { grid-template-columns:1fr; gap:2.5rem; }
+  .about-img { height:320px; }
+  .about-stats { grid-template-columns:repeat(3,1fr); gap:1rem; }
+  .stat-num { font-size:2rem; }
+
+  /* COLLECTIONS */
+  .collection-grid { grid-template-columns:repeat(2,1fr); gap:2px; }
+  .collection-name { font-size:1.1rem; }
+  .collection-price { font-size:.65rem; }
+  .category-filter-bar { gap:.4rem; }
+  .cat-btn { padding:.45rem 1rem; font-size:.58rem; }
+
+  /* WHY */
+  .why-grid { grid-template-columns:1fr; gap:1rem; }
+  .why-card { padding:1.8rem 1.5rem; }
+
+  /* GALLERY */
+  .insta-grid { grid-template-columns:repeat(2,1fr); gap:3px; }
+  .insta-follow-row { flex-direction:column; gap:1rem; }
+  .insta-follow-row a { width:100%; text-align:center; justify-content:center; }
+
+  /* REVIEWS */
+  .reviews-track { gap:1rem; }
+  .review-card { min-width:280px; padding:1.5rem; }
+
+  /* NEWSLETTER */
+  .newsletter-form { flex-direction:column; }
+  .newsletter-input { border-right:1px solid var(--border); }
+  .newsletter-submit { padding:1rem; }
+
+  /* CONTACT */
+  .contact-inner { grid-template-columns:1fr; gap:3rem; }
+  .contact-socials { flex-wrap:wrap; }
+  .social-btn { padding:.6rem 1rem; font-size:.6rem; }
+
+  /* MODAL */
+  .modal-box { grid-template-columns:1fr; max-height:95vh; overflow-y:auto; }
+  .modal-gallery { max-height:260px; }
+  .modal-body { padding:1.5rem; }
+  .modal-name { font-size:1.8rem; }
+  .modal-price { font-size:1.2rem; margin-bottom:1rem; }
+  .modal-desc { font-size:.8rem; margin-bottom:1rem; }
+
+  /* CART */
+  #cart-drawer { width:100%; padding:1.5rem; }
+
+  /* FOOTER */
+  .footer-grid { grid-template-columns:1fr; gap:2rem; }
+  .footer-brand-name { font-size:2rem; }
+  .footer-bottom { flex-direction:column; gap:.5rem; text-align:center; }
+}
+
+@media(max-width:430px) {
+  .hero-headline { font-size:3rem; }
+  .collection-grid { grid-template-columns:1fr; }
+  .about-stats { grid-template-columns:repeat(3,1fr); }
+  .stat-num { font-size:1.6rem; }
+  .modal-gallery { max-height:220px; }
+  .why-card { padding:1.4rem 1.2rem; }
+  .review-card { min-width:240px; }
+  .section-title { font-size:1.9rem; }
+}
+html[data-theme="light"] .cat-btn,
+html[data-theme="light"] button.cat-btn {
+  color: #1a1208 !important;
+  border: 2px solid #1a1208 !important;
+  background: transparent !important;
+  opacity: 1 !important;
+  font-weight: 800 !important;
+  -webkit-text-fill-color: #1a1208 !important;
+}
+</style>
+</head>
+<body>
+
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo">BANG</div>
+  <div class="loader-sub">Bang Is Valuable</div>
+  <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+</div>
+
+<!-- TOAST -->
+<div id="toast">Added to cart!</div>
+
+<!-- CART OVERLAY -->
+<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+
+<!-- CART DRAWER -->
+<div id="cart-drawer">
+  <div class="cart-header">
+    <div class="cart-title">Your Bag</div>
+    <button class="cart-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items-list">
+    <div class="cart-empty">
+      <div class="cart-empty-icon">🛍</div>
+      <p>Your bag is empty</p>
+    </div>
+  </div>
+  <div class="cart-footer" id="cart-footer" style="display:none">
+    <div class="cart-total-row">
+      <span class="cart-total-label">Total</span>
+      <span class="cart-total-val" id="cart-total-val">R 0</span>
+    </div>
+    <button class="cart-checkout" onclick="checkoutWhatsApp()">Checkout via WhatsApp</button>
+    <a href="https://paystack.shop/bang-fashion" target="_blank" class="cart-wa-order" style="text-decoration:none">
+      💳 Pay via Paystack
+    </a>
+  </div>
+</div>
+
+<!-- MOBILE MENU -->
+<div id="mobile-menu">
+  <button class="mobile-close" onclick="closeMobileMenu()">✕</button>
+  <a class="mobile-nav-link" href="#collections" onclick="closeMobileMenu()">Collections</a>
+  <a class="mobile-nav-link" href="#about" onclick="closeMobileMenu()">About</a>
+  <a class="mobile-nav-link" href="#gallery" onclick="closeMobileMenu()">Gallery</a>
+  <a class="mobile-nav-link" href="#contact" onclick="closeMobileMenu()">Contact</a>
+</div>
+
+<!-- PRODUCT MODAL -->
+<div id="modal-overlay" onclick="handleModalOverlayClick(event)">
+  <div class="modal-box">
+    <div class="modal-gallery">
+      <img id="modal-img" src="" alt="">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <button class="modal-prev" onclick="modalPrev()" id="modal-prev">‹</button>
+      <button class="modal-next" onclick="modalNext()" id="modal-next">›</button>
+      <div class="modal-dots" id="modal-dots"></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-cat" id="modal-cat">Collection</div>
+      <div class="modal-name" id="modal-name">Product Name</div>
+      <div class="modal-price" id="modal-price">R 0</div>
+      <div class="modal-desc" id="modal-desc">Product description.</div>
+      <div class="modal-sizes">
+        <div class="modal-sizes-label">Select Size</div>
+        <div class="size-grid" id="size-grid"></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-add-cart" onclick="addToCartFromModal()">Add to Bag</button>
+        <button class="btn-whatsapp" onclick="orderWhatsApp()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          Order on WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-bb">BB</div>
+    BANG
+  </a>
+  <ul class="nav-links">
+    <li><a href="#collections">Collections</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#why">Why Bang</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+<div class="nav-right">
+    <button class="theme-toggle" onclick="toggleTheme()" id="theme-toggle" title="Toggle Theme">
+      ☀
+    </button>
+    <div class="nav-cart-wrap">
+      <button class="nav-cart-btn" onclick="openCart()" title="Shopping Bag">
+        🛍
+        <span class="cart-count" id="cart-count">0</span>
+      </button>
+    </div>
+    <button class="hamburger" onclick="openMobileMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-overlay"></div>
+  <div class="hero-noise"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Bang Fashionza · eMalahleni, South Africa</div>
+      <h1 class="hero-headline">BANG<br><span>IS</span><br>VALUABLE</h1>
+      <p class="hero-tagline">Premium streetwear for those who move with purpose.<br>Delivered nationwide.</p>
+      <div class="hero-cta-group">
+        <a href="#collections" class="btn-primary">Shop Collection →</a>
+        <a href="#about" class="btn-outline">Our Story</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img-stack">
+        <img class="hero-img-main" src="https://res.cloudinary.com/dopqw0sji/image/upload/v1778005632/WhatsApp_Image_2026-05-04_at_12.44.27_rkyfmb.jpg" alt="Bang Danger Set">
+        <img class="hero-img-sec" src="https://res.cloudinary.com/dopqw0sji/image/upload/v1778005648/WhatsApp_Image_2026-05-04_at_12.44.23_dnlru5.jpg" alt="Bang Root Hoodie">
+        <div class="hero-badge">BANG<br>IS<br>VALUABLE</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    Scroll to Explore
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-track" id="marquee-track"></div>
+</div>
+
+<!-- COLLECTIONS -->
+<section id="collections">
+  <div class="section-header collections-inner reveal">
+    <div class="section-eyebrow">Shop Now</div>
+    <h2 class="section-title">Our Collections</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="collections-inner">
+    <div class="category-filter-bar" id="category-filter-bar">
+      <button class="cat-btn active" data-type="All">All</button>
+      <button class="cat-btn" data-type="New Arrivals">New Arrivals</button>
+      <button class="cat-btn" data-type="T-Shirts">T-Shirts</button>
+      <button class="cat-btn" data-type="Hoodies">Hoodies</button>
+      <button class="cat-btn" data-type="Sets">Sets & Tracksuits</button>
+      <button class="cat-btn" data-type="Dresses">Dresses</button>
+    </div>
+    <div class="collection-grid" id="collection-grid"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-text reveal">
+      <div class="section-eyebrow">Our Story</div>
+      <h2 class="section-title">Born in eMalahleni.<br>Built for Everyone.</h2>
+      <div class="section-line" style="margin-bottom:2rem"></div>
+      <p class="about-body">Bang Entertainment is more than a clothing brand — it's a cultural movement rooted in the streets of eMalahleni, South Africa. We exist to celebrate local artistry, elevate township fashion, and prove that premium streetwear can be born right here at home.</p>
+      <p class="about-body">Every piece we create carries a message: <strong style="color:var(--gold)">Bang Is Valuable</strong>. We design for those who move with intention, dress with purpose, and never compromise on quality.</p>
+      <div class="about-stats">
+        <div>
+          <div class="stat-num">551+</div>
+          <div class="stat-label">Posts</div>
+        </div>
+        <div>
+          <div class="stat-num">3.2K</div>
+          <div class="stat-label">Followers</div>
+        </div>
+        <div>
+          <div class="stat-num">🇿🇦</div>
+          <div class="stat-label">Nationwide Delivery</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-visual reveal">
+<div class="about-img" style="display:flex;align-items:center;justify-content:center;background:#0d0d0d;overflow:hidden;">
+  <img src="https://res.cloudinary.com/dopqw0sji/image/upload/v1778527335/77fc6a18-5da1-49d8-8b0a-5c3b90b887c9.png" alt="Bang BB Logo" style="width:100%;height:100%;object-fit:cover;">
+</div>
+      <div class="about-img-caption">Est. eMalahleni · South Africa</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY BANG -->
+<section id="why">
+  <div class="why-inner">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Why Choose Bang</div>
+      <h2 class="section-title">The Bang Promise</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">✦</div>
+        <div class="why-title">Premium Quality</div>
+        <p class="why-text">Every garment is crafted with premium materials — heavyweight fabrics, crisp prints, and finishes built to last.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🚚</div>
+        <div class="why-title">Nationwide Delivery</div>
+        <p class="why-text">We deliver to every corner of South Africa. Fast, reliable, and trackable — straight to your door.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🎨</div>
+        <div class="why-title">Authentic Design</div>
+        <p class="why-text">Original designs rooted in South African culture. Bold, intentional, and uniquely ours — you won't find this anywhere else.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">💬</div>
+        <div class="why-title">Direct Support</div>
+        <p class="why-text">Reach us directly via WhatsApp for sizing advice, order tracking, or anything else. Real people, real service.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM GALLERY -->
+<section id="gallery">
+  <div class="gallery-inner">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">@bangentertainment</div>
+      <h2 class="section-title">Life in Bang</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="insta-grid" id="insta-grid"></div>
+    <div class="insta-follow-row reveal" style="margin-top:2.5rem">
+      <a href="https://www.instagram.com/bangentertainment/" target="_blank" class="btn-primary" style="padding:.75rem 2rem">
+        Follow on Instagram
+      </a>
+      <a href="https://web.facebook.com/BangEntertainmentClothing/" target="_blank" class="btn-outline" style="padding:.75rem 2rem">
+        Follow on Facebook
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="reviews-inner">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Customer Love</div>
+      <h2 class="section-title">What They Say</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="reviews-track">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"The Bang Danger Set is insane quality. Got so many compliments the first time I wore it. This brand is the real deal."</p>
+        <div class="review-author">— Thabiso M. · Johannesburg</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Ordered the BB sweater and it arrived within 3 days. The fabric is so soft and the fit is perfect. Will definitely be ordering again!"</p>
+        <div class="review-author">— Lerato K. · Pretoria</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Bang Is Valuable is not just a slogan — it's a statement. I wear my Care tee everywhere and people always ask where I got it."</p>
+        <div class="review-author">— Sipho D. · eMalahleni</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"The Root hoodie in green is straight fire. Heavyweight, premium feel. This is quality streetwear from a South African brand we should all be supporting."</p>
+        <div class="review-author">— Amahle N. · Durban</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Ordered via WhatsApp and it was the smoothest experience. Got updates the whole way through. Received a beautiful BB dress — love it!"</p>
+        <div class="review-author">— Zanele P. · Cape Town</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section id="newsletter">
+  <div class="newsletter-inner reveal">
+    <div class="section-eyebrow">Stay Connected</div>
+    <h2 class="section-title">Join the Movement</h2>
+    <div class="section-line"></div>
+    <p class="newsletter-sub" style="margin-top:1.2rem">Be the first to know about new drops, exclusive restocks, and events. Sign up and become part of the Bang family.</p>
+    <div class="newsletter-form">
+      <input type="email" class="newsletter-input" placeholder="Your email address" id="newsletter-email">
+      <button class="newsletter-submit" onclick="subscribeNewsletter()">Subscribe</button>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">Get In Touch</div>
+      <h2 class="section-title">Contact Us</h2>
+      <div class="section-line"></div>
+      <div class="contact-details">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Address</div>
+            <div class="contact-val">Ebbe Street, eMalahleni, 1034<br>South Africa</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-val"><a href="mailto:info@bangfashion.co.za" style="color:inherit">info@bangfashion.co.za</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-label">Phone / WhatsApp</div>
+            <div class="contact-val"><a href="tel:0680980200" style="color:inherit">068 098 0200</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🚚</div>
+          <div>
+            <div class="contact-label">Delivery</div>
+            <div class="contact-val">Nationwide · South Africa 🇿🇦</div>
+          </div>
+        </div>
+        <div class="contact-socials">
+          <a href="https://www.instagram.com/bangentertainment/" target="_blank" class="social-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            Instagram
+          </a>
+          <a href="https://web.facebook.com/BangEntertainmentClothing/" target="_blank" class="social-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            Facebook
+          </a>
+          <a href="https://paystack.shop/bang-fashion" target="_blank" class="social-btn">
+            💳 Paystack Shop
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="contact-form">
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input class="form-input" type="text" placeholder="Your name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input class="form-input" type="email" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Subject</label>
+          <input class="form-input" type="text" placeholder="Order enquiry, sizing, etc.">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea class="form-textarea" placeholder="Tell us how we can help..."></textarea>
+        </div>
+        <button class="form-submit" onclick="submitContactForm(event)">Send Message →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">BANG</div>
+        <p class="footer-tagline">Premium streetwear born in eMalahleni, South Africa. Bang Is Valuable — always.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/bangentertainment/" target="_blank" title="Instagram">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://web.facebook.com/BangEntertainmentClothing/" target="_blank" title="Facebook">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://paystack.shop/bang-fashion" target="_blank" title="Shop">💳</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#collections">All Products</a></li>
+          <li><a href="#collections">T-Shirts</a></li>
+          <li><a href="#collections">Sweaters & Hoodies</a></li>
+          <li><a href="#collections">Sets & Tracksuits</a></li>
+          <li><a href="#collections">Dresses</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Info</h4>
+        <ul>
+          <li><a href="#about">About Bang</a></li>
+          <li><a href="#why">Why Choose Us</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="https://wa.me/27680980200" target="_blank">WhatsApp</a></li>
+          <li><a href="mailto:info@bangfashion.co.za">Email Us</a></li>
+          <li><a href="https://paystack.shop/bang-fashion" target="_blank">Paystack Shop</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 <span>Bang Entertainment</span> — Bang Fashionza. All rights reserved.</span>
+      <span>eMalahleni, 1034 · <span>Bang Is Valuable</span> 🇿🇦</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ─── DATA ───
+const products = [
+  {
+    id: 'bang_bb_dress',
+    name: 'Bang BB Dress',
+    category: 'BB Collection',
+    price: 500,
+    images: [
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005615/WhatsApp_Image_2026-05-04_at_12.44.35_whpc64.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005615/WhatsApp_Image_2026-05-04_at_12.44.35_1_ltcdqo.jpg',
+    ],
+    type: 'Dresses',
+    badge: 'New',
+    desc: 'The BB Dress — available in Nude and Tangerine. A figure-flattering silhouette with the iconic Bang finish.',
+    sizes: ['XS','S','M','L','XL'],
+  },
+  {
+    id: 'bang_bb_sweater',
+    name: 'Bang BB Sweater',
+    category: 'BB Collection',
+    type: 'Hoodies',
+    price: 650,
+    images: [
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005620/WhatsApp_Image_2026-05-04_at_12.43.47_vsh3yh.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005619/WhatsApp_Image_2026-05-04_at_12.43.47_1_alfp0n.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005619/WhatsApp_Image_2026-05-04_at_12.43.46_tm1atj.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005617/WhatsApp_Image_2026-05-04_at_12.43.46_2_yrrpsb.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005616/WhatsApp_Image_2026-05-04_at_12.43.45_3_t8ejyb.jpg',
+    ],
+    badge: 'Bestseller',
+    desc: 'Our signature BB Sweater in soft sky blue. Heavyweight premium fleece with embroidered BB detailing.',
+    sizes: ['S','M','L','XL','XXL'],
+  },
+  {
+    id: 'bang_bb_t_shirt',
+    name: 'Bang BB T-Shirt',
+    category: 'BB Collection',
+    type: 'T-Shirts',
+    price: 420,
+    images: [
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005624/WhatsApp_Image_2026-05-04_at_12.43.45_4_q0rvsu.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005623/WhatsApp_Image_2026-05-04_at_12.43.40_t0ut2n.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005622/WhatsApp_Image_2026-05-04_at_12.43.39_f3merc.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005622/WhatsApp_Image_2026-05-04_at_12.43.38_cmcjvj.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005621/WhatsApp_Image_2026-05-04_at_12.43.38_2_ze9kuj.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005621/WhatsApp_Image_2026-05-04_at_12.43.38_1_udshb9.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005620/WhatsApp_Image_2026-05-04_at_12.43.37_iqvpaf.jpg',
+    ],
+    badge: null,
+    desc: 'The BB T-Shirt in black. Heavyweight cotton, oversized fit with the iconic BB branding front and back.',
+    sizes: ['S','M','L','XL','XXL'],
+  },
+  {
+    id: 'bang_care',
+    name: 'Bang Care Tee',
+    category: 'Bang Care',
+    price: 480,
+    images: [
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005627/WhatsApp_Image_2026-05-04_at_12.43.43_wm5hyk.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005626/WhatsApp_Image_2026-05-04_at_12.43.43_1_da3nfl.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005626/WhatsApp_Image_2026-05-04_at_12.43.41_lrqiy3.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005625/WhatsApp_Image_2026-05-04_at_12.43.41_1_fyvsa9.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005625/WhatsApp_Image_2026-05-04_at_12.43.40_2_bfeqdd.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005624/WhatsApp_Image_2026-05-04_at_12.43.40_1_o6fgfy.jpg',
+    ],
+    badge: 'Limited',
+    desc: 'The Bang Care tee — featuring the full product label graphic. Bold, detailed, and 100% original.',
+    sizes: ['S','M','L','XL','XXL'],
+  },
+  {
+    id: 'bang_danger_2pc_set',
+    name: 'Bang Danger 2pc Set',
+    category: 'Bang Danger',
+    type: 'Sets',
+    price: 1000,
+    images: [
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005632/WhatsApp_Image_2026-05-04_at_12.44.27_rkyfmb.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005632/WhatsApp_Image_2026-05-04_at_12.44.26_2_jc4ftb.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005631/WhatsApp_Image_2026-05-04_at_12.44.26_ghdw93.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005631/WhatsApp_Image_2026-05-04_at_12.44.26_1_dcrkgc.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005630/WhatsApp_Image_2026-05-04_at_12.44.25_awem4v.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005629/WhatsApp_Image_2026-05-04_at_12.44.25_2_wupf4o.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005629/WhatsApp_Image_2026-05-04_at_12.44.25_1_rxfml8.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005628/WhatsApp_Image_2026-05-04_at_12.43.47_2_dnptrw.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005628/WhatsApp_Image_2026-05-04_at_12.44.20_d6lyjx.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005628/WhatsApp_Image_2026-05-04_at_12.43.47_3_lxdcga.jpg',
+    ],
+    badge: 'Set',
+    desc: 'The Bang Danger 2pc Set. Full tracksuit in deep mocha — hoodie + jogger with signature Bang Danger branding.',
+    sizes: ['S','M','L','XL','XXL'],
+  },
+  {
+    id: 'bang_danger_t_shirt',
+    name: 'Bang Danger T-shirt',
+    category: 'Bang Danger',
+    type: 'T-Shirts',
+    price: 500,
+    images: [
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005634/WhatsApp_Image_2026-05-04_at_12.44.34_2_fwbiio.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005633/WhatsApp_Image_2026-05-04_at_12.44.34_1_fch95y.jpg',
+    ],
+    badge: null,
+    desc: 'The Bang Danger tee. Bold back graphic. Heavyweight oversized fit — make a statement wherever you step.',
+    sizes: ['S','M','L','XL','XXL'],
+  },
+  {
+    id: 'bang_essence',
+    name: 'Bang Essence Tee',
+    category: 'Bang Essence',
+    price: 460,
+    images: [
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005635/WhatsApp_Image_2026-05-04_at_12.43.44_ctvbiv.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005635/WhatsApp_Image_2026-05-04_at_12.43.44_2_vc9vlx.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005634/WhatsApp_Image_2026-05-04_at_12.43.43_2_rfs26d.jpg',
+    ],
+    badge: 'New',
+    desc: 'The Bang Essence tee — minimalist BANG. vertical wordmark on a premium base. Less is more.',
+    sizes: ['S','M','L','XL','XXL'],
+  },
+  {
+    id: 'bang_is_valuable',
+    name: 'Bang Is Valuable Tee',
+    category: 'Bang Is Valuable',
+    type: 'T-Shirts',
+    price: 460,
+    images: [
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005637/WhatsApp_Image_2026-05-04_at_12.43.35_fldkgn.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005636/WhatsApp_Image_2026-05-04_at_12.43.35_1_crp70r.jpg',
+    ],
+    badge: 'Iconic',
+    desc: 'The OG. Bang Is Valuable — our founding message on our signature heavyweight black tee. This is where it all started.',
+    sizes: ['S','M','L','XL','XXL'],
+  },
+  {
+    id: 'bang_is_valuable_2',
+    name: 'Bang Is Valuable 2.0',
+    category: 'Bang Is Valuable',
+    type: 'T-Shirts',
+    price: 500,
+    images: [
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005641/WhatsApp_Image_2026-05-04_at_12.44.33_oz2b43.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005639/WhatsApp_Image_2026-05-04_at_12.44.33_2_jpb8nt.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005639/WhatsApp_Image_2026-05-04_at_12.44.33_1_tpemjc.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005638/WhatsApp_Image_2026-05-04_at_12.44.32_o8qbts.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005637/WhatsApp_Image_2026-05-04_at_12.44.32_1_hvdf8r.jpg',
+    ],
+    badge: 'New Drop',
+    desc: 'Bang Is Valuable 2.0 — now with vivid graphic treatment. Available in black and white. The next chapter.',
+    sizes: ['S','M','L','XL','XXL'],
+  },
+  {
+    id: 'bang_root_2pc',
+    name: 'Bang Root 2pc Set',
+    category: 'Bang Root',
+    type: 'Sets',
+    price: 1000,
+    images: [
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005645/WhatsApp_Image_2026-05-04_at_12.44.30_bt5kxd.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005644/WhatsApp_Image_2026-05-04_at_12.44.29_vlju9l.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005643/WhatsApp_Image_2026-05-04_at_12.44.28_hptseb.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005642/WhatsApp_Image_2026-05-04_at_12.44.28_1_uuv8zs.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005642/WhatsApp_Image_2026-05-04_at_12.44.28_2_hc70ao.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005641/WhatsApp_Image_2026-05-04_at_12.44.24_yiw10i.jpg',
+    ],
+    badge: 'Premium',
+    desc: 'The Bang Root 2pc Set. Cream hoodie with green BANG lettering + matching jogger. Our most premium set to date.',
+    sizes: ['S','M','L','XL','XXL'],
+  },
+  {
+    id: 'bang_root_hoodie',
+    name: 'Bang Root Hoodie',
+    category: 'Bang Root',
+    type: 'Hoodies',
+    price: 700,
+    images: [
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005648/WhatsApp_Image_2026-05-04_at_12.44.23_dnlru5.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005646/WhatsApp_Image_2026-05-04_at_12.44.23_3_xkkdqt.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005646/WhatsApp_Image_2026-05-04_at_12.44.23_2_ahicqt.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005645/WhatsApp_Image_2026-05-04_at_12.44.23_1_enwlqv.jpg',
+    ],
+    badge: null,
+    desc: 'The Bang Root Hoodie. Heavyweight pullover in forest green and cream. Bold BANG lettering — built to last.',
+    sizes: ['S','M','L','XL','XXL'],
+  },
+  {
+    id: 'bang_root_t_shirt',
+    name: 'Bang Root T-shirt',
+    category: 'Bang Root',
+    type: 'T-Shirts',
+    price: 500,
+    images: [
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005650/WhatsApp_Image_2026-05-04_at_12.44.31_qmxwaf.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005649/WhatsApp_Image_2026-05-04_at_12.44.31_1_zzywbi.jpg',
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778005649/WhatsApp_Image_2026-05-04_at_12.44.30_1_zprp7z.jpg',
+    ],
+    badge: null,
+    desc: 'The Bang Root tee. Black with large green BANG back print. A standout piece that speaks for itself.',
+    sizes: ['S','M','L','XL','XXL'],
+},
+  {
+    id: 'bang_toasted_bread',
+    name: 'Bang Toasted Bread Tee',
+    category: 'New Arrivals',
+    type: 'New Arrivals',
+    price: 500,
+    images: [
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778505009/bang_toasted_braed_ocvobs.jpg',
+    ],
+    badge: 'New Arrival',
+    desc: 'The Bang Toasted Bread Tee — bold toast graphic with the BANG branding. A statement piece that hits different.',
+    sizes: ['S','M','L','XL','XXL'],
+  },
+  {
+    id: 'bang_tag_tee',
+    name: 'Bang Tag Tee',
+    category: 'New Arrivals',
+    price: 500,
+    images: [
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778505007/bang_tag_i1fgup.jpg',
+    ],
+    badge: 'New Arrival',
+    desc: 'Bang Is Valuable — now with the iconic red tag graphic. Loud vision, silent grind. Worldwide service.',
+    sizes: ['S','M','L','XL','XXL'],
+  },
+  {
+    id: 'bang_popeye_tee',
+    name: 'Bang Popeye Tee',
+    category: 'New Arrivals',
+    type: 'New Arrivals',
+    price: 500,
+    images: [
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778505007/bang_popeye_yqhfdg.jpg',
+    ],
+    badge: 'New Arrival',
+    desc: 'The Bang Popeye Tee — classic cartoon energy meets Bang streetwear. Available in white and grey.',
+    sizes: ['S','M','L','XL','XXL'],
+  },
+  {
+    id: 'bang_supply_tee',
+    name: 'Bang Supply Tee',
+    category: 'New Arrivals',
+    type: 'New Arrivals',
+    price: 500,
+    images: [
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778505007/bang_supply_f7dzil.jpg',
+    ],
+    badge: 'New Arrival',
+    desc: 'Bang Supply — Re:Bang Is Valuable. Superior Brand. Open 24 hours daily. Clean collegiate print on white.',
+    sizes: ['S','M','L','XL','XXL'],
+  },
+  {
+    id: 'bang_biv_20_new',
+    name: 'Bang Is Valuable 2.0 (New)',
+    category: 'New Arrivals',
+    type: 'New Arrivals',
+    price: 500,
+    images: [
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778505006/bang_is_valuable_2.0_dfsx7j.jpg',
+    ],
+    badge: 'New Arrival',
+    desc: 'Bang Is Valuable 2.0 — new colourway drop. The message stays the same, the look levels up.',
+    sizes: ['S','M','L','XL','XXL'],
+  },
+  {
+    id: 'bang_full_tank',
+    name: 'Bang Full Tank',
+    category: 'New Arrivals',
+    type: 'New Arrivals',
+    price: 420,
+    images: [
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778505006/bang_full_tank_ootvps.jpg',
+    ],
+    badge: 'New Arrival',
+    desc: 'The Bang Full Tank — clean cut, premium fabric. Perfect for summer. Bang Is Valuable all year round.',
+    sizes: ['S','M','L','XL','XXL'],
+  },
+];;
+
+const instaImgs = [
+  'https://res.cloudinary.com/dopqw0sji/image/upload/v1778075525/img1_ckbl3u.png',
+  'https://res.cloudinary.com/dopqw0sji/image/upload/v1778075528/img2_z0qj7n.png',
+  'https://res.cloudinary.com/dopqw0sji/image/upload/v1778075532/img5_awnv1n.png',
+  'https://res.cloudinary.com/dopqw0sji/image/upload/v1778075533/img4_kbutft.png',
+  'https://res.cloudinary.com/dopqw0sji/image/upload/v1778075534/img6_lunphg.png',
+  'https://res.cloudinary.com/dopqw0sji/image/upload/v1778075540/img7_rjufi9.png',
+  'https://res.cloudinary.com/dopqw0sji/image/upload/v1778075542/img8_eno5sk.png',
+];
+
+// ─── CART STATE ───
+let cart = [];
+let currentProduct = null;
+let selectedSize = null;
+
+// ─── THEME ───
+function toggleTheme() {
+  const html = document.documentElement;
+  const btn = document.getElementById('theme-toggle');
+  const isLight = html.getAttribute('data-theme') === 'light';
+  if (isLight) {
+    html.removeAttribute('data-theme');
+    btn.textContent = '☀';
+    localStorage.setItem('bang-theme', 'dark');
+  } else {
+    html.setAttribute('data-theme', 'light');
+    btn.textContent = '🌙';
+    localStorage.setItem('bang-theme', 'light');
+  }
+}
+
+// Apply saved theme immediately on load
+(function() {
+  const saved = localStorage.getItem('bang-theme');
+  if (saved === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('theme-toggle');
+      if (btn) btn.textContent = '🌙';
+    });
+  }
+})();
+
+// ─── CURSOR ───
+
+// ─── LOADER ───
+setTimeout(() => {
+  document.getElementById('loader').classList.add('done');
+}, 2000);
+
+// ─── NAV ───
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
+});
+
+function openMobileMenu() { document.getElementById('mobile-menu').classList.add('open'); }
+function closeMobileMenu() { document.getElementById('mobile-menu').classList.remove('open'); }
+
+// ─── MARQUEE ───
+const marqueeItems = ['Bang Is Valuable','New Arrivals','Nationwide Delivery','Premium Streetwear','South African Brand','eMalahleni','BB Collection','Bang Root','Bang Danger'];
+const track = document.getElementById('marquee-track');
+[...marqueeItems,...marqueeItems,...marqueeItems].forEach(item => {
+  track.innerHTML += `<div class="marquee-item">${item}<span class="marquee-dot"></span></div>`;
+});
+
+// ─── BUILD COLLECTIONS ───
+const grid = document.getElementById('collection-grid');
+
+function buildGrid(category) {
+  grid.innerHTML = '';
+  const filtered = category === 'All' ? products : products.filter(p => p.type === category);
+  filtered.forEach(p => {
+    const src = p.images[0];
+    const card = document.createElement('div');
+    card.className = 'collection-card';
+    card.innerHTML = `
+      <div class="collection-card-img-wrap">
+        ${p.badge ? `<div class="collection-badge">${p.badge}</div>` : ''}
+        <img src="${src}" alt="${p.name}" loading="lazy" onerror="this.style.background='#1a1a1a'">
+      </div>
+      <div class="collection-card-body">
+        <div class="collection-card-cat">${p.category}</div>
+        <div class="collection-card-name">${p.name}</div>
+        <div class="collection-card-bottom">
+          <div class="collection-card-price">R ${p.price.toLocaleString()}</div>
+          <button class="collection-card-btn" onclick="event.stopPropagation();openModal(arguments[0]||event)">VIEW & ADD</button>
+        </div>
+      </div>
+    `;
+    card.addEventListener('click', () => openModal(p));
+    card.querySelector('.collection-card-btn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      openModal(p);
+    });
+    grid.appendChild(card);
+  });
+}
+
+// Filter button logic
+document.querySelectorAll('.cat-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    buildGrid(btn.dataset.type);
+  });
+});
+
+// Build initial grid
+buildGrid('All');
+
+// ─── BUILD INSTA GRID ───
+const instaGrid = document.getElementById('insta-grid');
+instaImgs.forEach((img, i) => {
+  const src = img;
+  const cell = document.createElement('div');
+  cell.className = 'insta-cell';
+  cell.innerHTML = `
+    <img src="${src}" alt="Bang lifestyle ${i+1}" loading="lazy">
+    <div class="insta-hover">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </div>
+  `;
+  cell.addEventListener('click', () => window.open('https://www.instagram.com/bangentertainment/','_blank'));
+  instaGrid.appendChild(cell);
+});
+
+// ─── MODAL ───
+// ─── MODAL ───
+let modalImgIndex = 0;
+
+function openModal(p) {
+  currentProduct = p;
+  selectedSize = null;
+  modalImgIndex = 0;
+  renderModalImage();
+
+  document.getElementById('modal-cat').textContent = p.category;
+  document.getElementById('modal-name').textContent = p.name;
+  document.getElementById('modal-price').textContent = `R ${p.price.toLocaleString()}`;
+  document.getElementById('modal-desc').textContent = p.desc;
+
+  const sg = document.getElementById('size-grid');
+  sg.innerHTML = '';
+  p.sizes.forEach(s => {
+    const b = document.createElement('button');
+    b.className = 'size-btn';
+    b.textContent = s;
+    b.addEventListener('click', () => {
+      sg.querySelectorAll('.size-btn').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      selectedSize = s;
+    });
+    sg.appendChild(b);
+  });
+
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function renderModalImage() {
+  const p = currentProduct;
+  const imgs = p.images || [p.img];
+  const total = imgs.length;
+
+  document.getElementById('modal-img').src = imgs[modalImgIndex];
+
+  // prev/next visibility
+  document.getElementById('modal-prev').style.display = total <= 1 ? 'none' : 'flex';
+  document.getElementById('modal-next').style.display = total <= 1 ? 'none' : 'flex';
+
+  // dots
+  const dotsEl = document.getElementById('modal-dots');
+  dotsEl.innerHTML = '';
+  if(total > 1) {
+    imgs.forEach((_, i) => {
+      const d = document.createElement('div');
+      d.className = 'modal-dot' + (i === modalImgIndex ? ' active' : '');
+      d.addEventListener('click', () => { modalImgIndex = i; renderModalImage(); });
+      dotsEl.appendChild(d);
+    });
+  }
+}
+
+function modalPrev() {
+  const total = (currentProduct.images || [currentProduct.img]).length;
+  modalImgIndex = (modalImgIndex - 1 + total) % total;
+  renderModalImage();
+}
+
+function modalNext() {
+  const total = (currentProduct.images || [currentProduct.img]).length;
+  modalImgIndex = (modalImgIndex + 1) % total;
+  renderModalImage();
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleModalOverlayClick(e) {
+  if(e.target === document.getElementById('modal-overlay')) closeModal();
+}
+
+// ─── CART ───
+function updateCartUI() {
+  const count = cart.reduce((a,c) => a + c.qty, 0);
+  document.getElementById('cart-count').textContent = count;
+
+  const list = document.getElementById('cart-items-list');
+  const footer = document.getElementById('cart-footer');
+
+  if(cart.length === 0) {
+    list.innerHTML = '<div class="cart-empty"><div class="cart-empty-icon">🛍</div><p>Your bag is empty</p></div>';
+    footer.style.display = 'none';
+    return;
+  }
+  footer.style.display = 'block';
+  list.innerHTML = '';
+  cart.forEach((item, idx) => {
+    const div = document.createElement('div');
+    div.className = 'cart-item';
+    div.innerHTML = `
+      <img class="cart-item-img" src="${item.img}" alt="${item.name}" onerror="this.style.display='none'">
+      <div>
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-size">Size: ${item.size} · Qty: ${item.qty}</div>
+        <button class="cart-remove" onclick="removeFromCart(${idx})">Remove</button>
+      </div>
+      <div class="cart-item-price">R ${(item.price * item.qty).toLocaleString()}</div>
+    `;
+    list.appendChild(div);
+  });
+  const total = cart.reduce((a,c) => a + c.price * c.qty, 0);
+  document.getElementById('cart-total-val').textContent = `R ${total.toLocaleString()}`;
+}
+
+function removeFromCart(idx) {
+  cart.splice(idx,1);
+  updateCartUI();
+}
+
+function addToCartFromModal() {
+  if(!currentProduct) return;
+  if(!selectedSize) { showToast('Please select a size'); return; }
+  const existing = cart.find(c => c.id === currentProduct.id && c.size === selectedSize);
+  if(existing) { existing.qty++; }
+  else { cart.push({...currentProduct, img: currentProduct.images[0], size: selectedSize, qty: 1}); }
+  updateCartUI();
+  closeModal();
+  openCart();
+  showToast('Added to bag!');
+}
+
+function openCart() {
+  document.getElementById('cart-drawer').classList.add('open');
+  document.getElementById('cart-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCart() {
+  document.getElementById('cart-drawer').classList.remove('open');
+  document.getElementById('cart-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function checkoutWhatsApp() {
+  if(cart.length === 0) return;
+  const total = cart.reduce((a,c) => a + c.price * c.qty, 0);
+  let msg = `🛒 *Bang Fashion Order*\n\n`;
+  cart.forEach(c => { msg += `• ${c.name} (Size: ${c.size}) x${c.qty} — R ${(c.price*c.qty).toLocaleString()}\n`; });
+  msg += `\n*Total: R ${total.toLocaleString()}*\n\nPlease confirm my order. Thank you! 🙏`;
+  window.open(`https://wa.me/27680980200?text=${encodeURIComponent(msg)}`,'_blank');
+}
+
+function orderWhatsApp() {
+  if(!currentProduct) return;
+  const size = selectedSize || '(please specify size)';
+  const msg = `Hi Bang Fashion! 👋\n\nI'd like to order:\n\n*${currentProduct.name}*\nSize: ${size}\nPrice: R ${currentProduct.price.toLocaleString()}\n\nPlease advise on availability and payment. Thank you!`;
+  window.open(`https://wa.me/27680980200?text=${encodeURIComponent(msg)}`,'_blank');
+}
+
+// ─── TOAST ───
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ─── NEWSLETTER ───
+function subscribeNewsletter() {
+  const email = document.getElementById('newsletter-email').value;
+  if(!email || !email.includes('@')) { showToast('Please enter a valid email'); return; }
+  document.getElementById('newsletter-email').value = '';
+  showToast('Welcome to the Bang family! 🖤');
+}
+
+// ─── CONTACT FORM ───
+function submitContactForm(e) {
+  e.preventDefault();
+  showToast('Message sent! We\'ll be in touch 🙌');
+}
+
+// ─── SCROLL REVEAL ───
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.12 });
+revealEls.forEach(el => observer.observe(el));
+
+updateCartUI();
+</script>
+</body>
+</html>

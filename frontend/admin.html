@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bang Fashion - Admin Dashboard</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div id="login-screen" style="display:none; position:fixed; inset:0; background:#0f0f0f; z-index:9999; align-items:center; justify-content:center;">
+  <div style="width:100%; max-width:420px; padding:2rem;">
+    <div style="background:#1a1a1a; border:1px solid #2a2a2a; border-radius:12px; padding:3rem 2.5rem;">
+      <div style="text-align:center; margin-bottom:2.5rem;">
+        <h1 style="font-size:2rem; font-weight:800; letter-spacing:.2em; color:#f4f1ec;">BANG<span style="color:#c8a45a;">.</span></h1>
+        <p style="font-size:.75rem; color:#666; letter-spacing:.2em; text-transform:uppercase; margin-top:.4rem;">Admin Panel</p>
+      </div>
+      <div id="login-error" style="display:none; background:rgba(231,76,60,.15); border:1px solid rgba(231,76,60,.3); color:#e74c3c; padding:.8rem 1rem; border-radius:6px; font-size:.8rem; text-align:center; margin-bottom:1rem;"></div>
+      <div style="margin-bottom:1.2rem;">
+        <label style="display:block; font-size:.7rem; letter-spacing:.15em; text-transform:uppercase; color:#888; font-weight:600; margin-bottom:.5rem;">Username</label>
+        <input id="login-username" type="text" placeholder="Enter username" style="width:100%; padding:.85rem 1rem; background:#111; border:1px solid #2a2a2a; border-radius:6px; color:#f4f1ec; font-family:'Inter',sans-serif; font-size:.9rem; outline:none;">
+      </div>
+      <div style="margin-bottom:1.2rem;">
+        <label style="display:block; font-size:.7rem; letter-spacing:.15em; text-transform:uppercase; color:#888; font-weight:600; margin-bottom:.5rem;">Password</label>
+        <div style="position:relative;">
+          <input id="login-password" type="password" placeholder="Enter password" style="width:100%; padding:.85rem 1rem; background:#111; border:1px solid #2a2a2a; border-radius:6px; color:#f4f1ec; font-family:'Inter',sans-serif; font-size:.9rem; outline:none; box-sizing:border-box;">
+          <i id="toggle-password" class="fas fa-eye" onclick="togglePassword()" style="position:absolute; right:1rem; top:50%; transform:translateY(-50%); color:#666; cursor:pointer; font-size:.9rem;"></i>
+        </div>
+      </div>
+      <button id="login-btn" onclick="handleLogin()" style="width:100%; padding:.95rem; background:#c8a45a; color:#0f0f0f; border:none; border-radius:6px; font-family:'Inter',sans-serif; font-size:.8rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; cursor:pointer; margin-top:.5rem;">Sign In</button>
+      <div style="text-align:center; margin-top:1.5rem;">
+        <a href="bb_website_updated.html" style="font-size:.75rem; color:#666; text-decoration:none; letter-spacing:.1em;">← Back to Store</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard" style="display:none;">
+    <div class="admin-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>BANG<span>FASHION</span></h2>
+                <p>Admin Panel</p>
+            </div>
+            <nav class="admin-nav">
+                <a href="#" class="nav-item active" data-page="orders">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Orders</span>
+                    <span class="badge" id="pending-orders-badge">0</span>
+                </a>
+                <a href="#" class="nav-item" data-page="customers">
+                    <i class="fas fa-users"></i>
+                    <span>Customers</span>
+                </a>
+                <a href="#" class="nav-item" data-page="stock">
+                    <i class="fas fa-boxes"></i>
+                    <span>Stock</span>
+                </a>
+                <a href="#" class="nav-item" data-page="analytics">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Analytics</span>
+                </a>
+            </nav>
+            <div class="admin-footer">
+                <a href="index.html" class="logout-btn">
+                    <i class="fas fa-store"></i>
+                    <span>Back to Store</span>
+                </a>
+                <a href="#" class="logout-btn" onclick="logout()" style="margin-top:.5rem;">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="admin-header">
+                <div class="header-title">
+                    <h1 id="page-title">Orders Management</h1>
+                    <p id="page-subtitle">Manage and track customer orders</p>
+                </div>
+                <div class="admin-profile">
+                    <i class="fas fa-bell"></i>
+                    <div class="profile-info">
+                        <span>Admin</span>
+                        <small>admin@bangfashion.com</small>
+                    </div>
+                    <i class="fas fa-user-circle fa-2x"></i>
+                </div>
+            </header>
+
+            <!-- Orders Page -->
+            <div id="orders-page" class="page-content active">
+                <div class="stats-cards">
+                    <div class="stat-card">
+                        <i class="fas fa-clock"></i>
+                        <div class="stat-info">
+                            <h3 id="pending-count">0</h3>
+                            <p>Pending Orders</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-spinner"></i>
+                        <div class="stat-info">
+                            <h3 id="processing-count">0</h3>
+                            <p>Processing</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-truck"></i>
+                        <div class="stat-info">
+                            <h3 id="shipped-count">0</h3>
+                            <p>Shipped</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-check-circle"></i>
+                        <div class="stat-info">
+                            <h3 id="delivered-count">0</h3>
+                            <p>Delivered</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-chart-line"></i>
+                        <div class="stat-info">
+                            <h3 id="total-revenue">ZAR 0</h3>
+                            <p>Total Revenue</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filters">
+                    <select id="status-filter" class="filter-select">
+                        <option value="all">All Orders</option>
+                        <option value="pending">Pending</option>
+                        <option value="processing">Processing</option>
+                        <option value="shipped">Shipped</option>
+                        <option value="delivered">Delivered</option>
+                    </select>
+                    <input type="text" id="search-order" placeholder="Search by order # or customer..." class="search-input">
+                    <button id="refresh-orders" class="refresh-btn"><i class="fas fa-sync-alt"></i> Refresh</button>
+                </div>
+
+                <div class="orders-table-container">
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Date</th>
+                                <th>Items</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders-list">
+                            <tr><td colspan="7" style="text-align:center;">No orders yet. Customers need to place orders first.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Customers Page -->
+            <div id="customers-page" class="page-content">
+                <h2>Registered Customers</h2>
+                <div class="customers-list" id="customers-list">
+                    <p>Loading customers...</p>
+                </div>
+            </div>
+
+            <!-- Stock Manager Page -->
+            <div id="stock-page" class="page-content">
+                <div style="margin-bottom:2rem;">
+                    <h2 style="font-size:1.4rem;font-weight:700;color:#f4f1ec;letter-spacing:.08em;">📦 Product Stock Manager</h2>
+                    <p style="font-size:.75rem;color:#666;margin-top:.4rem;letter-spacing:.1em;">Toggle products in/out of stock. Out of stock items will be blocked on the storefront.</p>
+                </div>
+                <div id="stock-manager-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem;"></div>
+            </div>
+
+            <!-- Analytics Page -->
+            <div id="analytics-page" class="page-content">
+                <div class="analytics-cards">
+                    <div class="analytics-card">
+                        <h3>Total Orders</h3>
+                        <p id="total-orders">0</p>
+                    </div>
+                    <div class="analytics-card">
+                        <h3>Total Customers</h3>
+                        <p id="total-customers">0</p>
+                    </div>
+                    <div class="analytics-card">
+                        <h3>Total Revenue</h3>
+                        <p id="analytics-revenue">ZAR 0</p>
+                    </div>
+                </div>
+                <div class="recent-activity">
+                    <h3>Recent Order Activity</h3>
+                    <div id="recent-activity-list"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Order Details Modal -->
+    <div id="order-modal" class="modal">
+        <div class="modal-content order-modal">
+            <span class="close-modal">&times;</span>
+            <h2><i class="fas fa-receipt"></i> Order Details</h2>
+            <div id="order-details"></div>
+            <div class="status-update">
+                <label><i class="fas fa-tag"></i> Update Status:</label>
+                <select id="update-status" class="status-select">
+                    <option value="pending">⏳ Pending</option>
+                    <option value="processing">⚙️ Processing</option>
+                    <option value="shipped">🚚 Shipped</option>
+                    <option value="delivered">✅ Delivered</option>
+                </select>
+                <button id="update-order-btn" class="update-btn">Update Status</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+// ─── AUTH CHECK ───
+async function handleLogin() {
+  const username = document.getElementById('login-username').value.trim();
+  const password = document.getElementById('login-password').value.trim();
+  const btn = document.getElementById('login-btn');
+  const errorDiv = document.getElementById('login-error');
+
+  if (!username || !password) {
+    errorDiv.textContent = 'Please enter username and password';
+    errorDiv.style.display = 'block';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Signing in...';
+  errorDiv.style.display = 'none';
+
+  try {
+    const response = await fetch('http://localhost:3000/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password })
+    });
+    const data = await response.json();
+    if (response.ok) {
+      localStorage.setItem('bang_admin_token', data.token);
+      localStorage.setItem('bang_admin_user', data.username);
+      showDashboard();
+    } else {
+      errorDiv.textContent = data.error || 'Invalid credentials';
+      errorDiv.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Sign In';
+    }
+  } catch (err) {
+    errorDiv.textContent = 'Cannot connect to server';
+    errorDiv.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Sign In';
+  }
+}
+
+function showDashboard() {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  const user = localStorage.getItem('bang_admin_user') || 'Admin';
+  document.querySelector('.profile-info span').textContent = user;
+}
+
+function logout() {
+  localStorage.removeItem('bang_admin_token');
+  localStorage.removeItem('bang_admin_user');
+  location.reload();
+}
+
+// Check on page load
+window.addEventListener('DOMContentLoaded', () => {
+  localStorage.removeItem('bang_admin_token');
+  localStorage.removeItem('bang_admin_user');
+  document.getElementById('login-screen').style.display = 'flex';
+});
+
+
+
+function togglePassword() {
+  const input = document.getElementById('login-password');
+  const icon = document.getElementById('toggle-password');
+  if (input.type === 'password') {
+    input.type = 'text';
+    icon.classList.replace('fa-eye', 'fa-eye-slash');
+  } else {
+    input.type = 'password';
+    icon.classList.replace('fa-eye-slash', 'fa-eye');
+  }
+}
+
+document.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') handleLogin();
+});
+
+// ─── STOCK MANAGER ───
+const ADMIN_PRODUCTS = [
+  { id:101, name:"Bang Toasted Bread Tee" },
+  { id:102, name:"Bang Tag Tee" },
+  { id:103, name:"Bang Popeye Tee" },
+  { id:104, name:"Bang Supply Tee" },
+  { id:105, name:"Bang Is Valuable 2.0 (New)" },
+  { id:106, name:"Bang Full Tank" },
+  { id:1,   name:"Bang Is Valuable Tee" },
+  { id:2,   name:"Bang Is Valuable 2.0" },
+  { id:3,   name:"Bang Care Tee" },
+  { id:4,   name:"Bang Essence Tee" },
+  { id:5,   name:"Bang BB T-Shirt" },
+  { id:6,   name:"Bang Danger T-Shirt" },
+  { id:7,   name:"Bang Root T-Shirt" },
+  { id:8,   name:"Bang BB Sweater" },
+  { id:9,   name:"Bang Root Hoodie" },
+  { id:10,  name:"Bang Danger 2pc Set" },
+  { id:11,  name:"Bang Root 2pc Set" },
+  { id:12,  name:"Bang BB Dress" },
+];
+
+function getStockData() {
+  return JSON.parse(localStorage.getItem('bf_stock') || '{}');
+}
+
+function saveStockData(data) {
+  localStorage.setItem('bf_stock', JSON.stringify(data));
+}
+
+function buildStockManager() {
+  const grid = document.getElementById('stock-manager-grid');
+  if (!grid) return;
+  const stock = getStockData();
+  grid.innerHTML = '';
+
+  ADMIN_PRODUCTS.forEach(p => {
+    const isOut = stock[p.id] === 'out';
+    const card = document.createElement('div');
+    card.style.cssText = `
+      background:#111;
+      border:1px solid ${isOut ? '#e74c3c' : '#2a2a2a'};
+      border-radius:8px;
+      padding:1.2rem 1.5rem;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+      transition:border-color .3s;
+    `;
+    card.innerHTML = `
+      <div>
+        <div style="font-size:.85rem;font-weight:600;color:#f4f1ec;margin-bottom:.3rem;">${p.name}</div>
+        <div style="font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:${isOut ? '#e74c3c' : '#27ae60'};">
+          ${isOut ? '🔴 Out of Stock' : '🟢 In Stock'}
+        </div>
+      </div>
+      <button onclick="toggleStock(${p.id})" style="
+        padding:.55rem 1.2rem;
+        background:${isOut ? '#27ae60' : '#e74c3c'};
+        color:#fff;
+        border:none;
+        border-radius:6px;
+        font-size:.68rem;
+        letter-spacing:.15em;
+        text-transform:uppercase;
+        font-weight:700;
+        cursor:pointer;
+        font-family:'Inter',sans-serif;
+        white-space:nowrap;
+        transition:background .25s;
+      ">${isOut ? '✓ Mark In Stock' : '✕ Mark Out of Stock'}</button>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function toggleStock(id) {
+  const stock = getStockData();
+  if (stock[id] === 'out') {
+    delete stock[id];
+  } else {
+    stock[id] = 'out';
+  }
+  saveStockData(stock);
+  buildStockManager();
+}
+
+// Hook into showDashboard to build stock manager
+function showDashboard() {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  const user = localStorage.getItem('bang_admin_user') || 'Admin';
+  document.querySelector('.profile-info span').textContent = user;
+  buildStockManager();
+}
+</script>
+
+<script src="js/admin.js"></script>
+</body>
+</body>
+</html>
