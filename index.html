@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" type="image/png" href="https://res.cloudinary.com/dopqw0sji/image/upload/v1781697183/android-chrome-512x512_umalkg.png">
+<link rel="apple-touch-icon" href="https://res.cloudinary.com/dopqw0sji/image/upload/v1781697183/android-chrome-512x512_umalkg.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BANG — Bang Is Valuable</title>
@@ -42,6 +44,21 @@
   --mid: #e4ddd3;
   --muted: #8a7d6b;
   --border: rgba(0,0,0,0.1);
+}
+
+[data-theme="dark"] {
+  --bg: #080808;
+  --bg-dark: #111;
+  --bg-mid: #1e1e1e;
+  --text-primary: #f4f1ec;
+  --text-muted: #999;
+  --card-border: rgba(255,255,255,0.07);
+  --black: #080808;
+  --white: #f4f1ec;
+  --dark: #111;
+  --mid: #1e1e1e;
+  --muted: #999;
+  --border: rgba(255,255,255,0.07);
 }
 
 /* ── LIGHT THEME OVERRIDES ── */
@@ -470,7 +487,7 @@ nav.scrolled {
 .cat-btn {
   padding: .55rem 1.4rem;
   border: 1px solid rgba(200,164,90,.4);
-  color: #1a1208;
+  color: var(--gold);
   font-family: 'Montserrat', sans-serif;
   font-size: .65rem;
   letter-spacing: .2em;
@@ -645,7 +662,10 @@ html[data-theme="light"] button.cat-btn.active {
 }
 .marquee-track {
   display:flex; gap:3rem; width:max-content;
-  animation: marquee 18s linear infinite;
+  animation: marquee 8s linear infinite;
+}
+.marquee-strip:hover .marquee-track {
+  animation-play-state: paused;
 }
 .marquee-item {
   font-family:'Bebas Neue',sans-serif;
@@ -655,6 +675,16 @@ html[data-theme="light"] button.cat-btn.active {
 }
 .marquee-dot { width:5px; height:5px; border-radius:50%; background:rgba(0,0,0,.3); }
 @keyframes marquee { to { transform: translateX(-50%); } }
+.marquee-strip {
+  cursor: default;
+}
+.marquee-item {
+  transition: color .25s, transform .25s;
+}
+.marquee-item:hover {
+  color: rgba(0,0,0,.6);
+  transform: scale(1.08);
+}
 
 /* ─── SECTIONS ─── */
 .section { padding:6rem 5%; max-width:1400px; margin:0 auto; }
@@ -1262,6 +1292,280 @@ html[data-theme="light"] button.cat-btn {
   font-weight: 800 !important;
   -webkit-text-fill-color: #1a1208 !important;
 }
+/* ─── DARK THEME OVERRIDES ─── */
+[data-theme="dark"] body {
+  background: #080808;
+  color: #f4f1ec;
+}
+[data-theme="dark"] nav {
+  background: rgba(8,8,8,0.95);
+}
+[data-theme="dark"] nav.scrolled {
+  background: rgba(8,8,8,0.97);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+[data-theme="dark"] .nav-logo,
+[data-theme="dark"] .nav-links a {
+  color: #f4f1ec;
+}
+[data-theme="dark"] .nav-cart-btn {
+  border-color: rgba(255,255,255,0.07);
+  color: #f4f1ec;
+}
+[data-theme="dark"] .hamburger span {
+  background: #f4f1ec;
+}
+[data-theme="dark"] #hero {
+  background: #080808;
+}
+[data-theme="dark"] .hero-bg {
+  background: linear-gradient(135deg, #0d0d0d 0%, #1a1208 50%, #080808 100%);
+}
+[data-theme="dark"] .hero-headline {
+  color: #f4f1ec;
+}
+[data-theme="dark"] .hero-headline span {
+  color: var(--gold);
+}
+[data-theme="dark"] .hero-eyebrow {
+  color: var(--gold);
+}
+[data-theme="dark"] .hero-tagline {
+  color: rgba(255,255,255,0.55);
+}
+[data-theme="dark"] .hero-scroll {
+  color: #999;
+}
+[data-theme="dark"] .btn-outline {
+  border-color: rgba(255,255,255,0.25);
+  color: #f4f1ec;
+}
+[data-theme="dark"] #about {
+  background: #111;
+}
+[data-theme="dark"] .about-body {
+  color: rgba(255,255,255,0.65);
+}
+[data-theme="dark"] .stat-label {
+  color: #999;
+}
+[data-theme="dark"] .section-title {
+  color: #f4f1ec;
+}
+[data-theme="dark"] .section-eyebrow {
+  color: var(--gold);
+}
+[data-theme="dark"] .section-line {
+  background: var(--gold);
+}
+[data-theme="dark"] #collections {
+  background: #080808;
+}
+[data-theme="dark"] #collections .section-title {
+  color: #f4f1ec;
+}
+[data-theme="dark"] #collections .section-eyebrow {
+  color: var(--gold);
+}
+[data-theme="dark"] .collection-card {
+  background: #111;
+}
+[data-theme="dark"] .collection-card-name {
+  color: #f4f1ec;
+}
+[data-theme="dark"] .collection-card-btn {
+  background: #f4f1ec;
+  color: #080808;
+}
+[data-theme="dark"] .collection-card-btn:hover {
+  background: var(--gold);
+  color: #080808;
+}
+[data-theme="dark"] #gallery {
+  background: #111;
+}
+[data-theme="dark"] #why {
+  background: #080808;
+}
+[data-theme="dark"] .why-card {
+  border-color: rgba(255,255,255,0.07);
+  background: transparent;
+}
+[data-theme="dark"] .why-title {
+  color: #f4f1ec;
+}
+[data-theme="dark"] .why-text {
+  color: rgba(255,255,255,0.55);
+}
+[data-theme="dark"] #reviews {
+  background: #111;
+}
+[data-theme="dark"] .review-card {
+  background: #1e1e1e;
+  border-color: rgba(255,255,255,0.07);
+}
+[data-theme="dark"] .review-text {
+  color: rgba(255,255,255,0.65);
+}
+[data-theme="dark"] .review-author {
+  color: var(--gold);
+}
+[data-theme="dark"] #newsletter {
+  background: linear-gradient(135deg, #1a1208 0%, #0d0d0d 100%);
+}
+[data-theme="dark"] .newsletter-inner .section-title {
+  color: #f4f1ec;
+}
+[data-theme="dark"] .newsletter-sub {
+  color: rgba(255,255,255,0.5);
+}
+[data-theme="dark"] .newsletter-input {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.07);
+  color: #f4f1ec;
+}
+[data-theme="dark"] .newsletter-input::placeholder {
+  color: #999;
+}
+[data-theme="dark"] #contact {
+  background: #080808;
+}
+[data-theme="dark"] .contact-val {
+  color: rgba(255,255,255,0.8);
+}
+[data-theme="dark"] .contact-label {
+  color: #999;
+}
+[data-theme="dark"] .form-input,
+[data-theme="dark"] .form-textarea {
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(255,255,255,0.07);
+  color: #f4f1ec;
+}
+[data-theme="dark"] .form-input::placeholder,
+[data-theme="dark"] .form-textarea::placeholder {
+  color: #999;
+}
+[data-theme="dark"] .form-label {
+  color: #999;
+}
+[data-theme="dark"] .social-btn {
+  border-color: rgba(255,255,255,0.07);
+  color: rgba(255,255,255,0.7);
+}
+[data-theme="dark"] footer {
+  background: #111;
+}
+[data-theme="dark"] .footer-brand-name {
+  color: #f4f1ec;
+}
+[data-theme="dark"] .footer-tagline {
+  color: rgba(255,255,255,0.4);
+}
+[data-theme="dark"] .footer-col h4 {
+  color: var(--gold);
+}
+[data-theme="dark"] .footer-col ul a {
+  color: rgba(255,255,255,0.45);
+}
+[data-theme="dark"] .footer-bottom {
+  color: rgba(255,255,255,0.25);
+}
+[data-theme="dark"] #modal-overlay .modal-box {
+  background: #111;
+}
+[data-theme="dark"] .modal-name,
+[data-theme="dark"] .modal-desc {
+  color: #f4f1ec;
+}
+[data-theme="dark"] .modal-cat {
+  color: var(--gold);
+}
+[data-theme="dark"] .modal-price {
+  color: var(--gold);
+}
+[data-theme="dark"] .modal-sizes-label {
+  color: #999;
+}
+[data-theme="dark"] .size-btn {
+  border-color: rgba(255,255,255,0.07);
+  color: rgba(255,255,255,0.6);
+}
+[data-theme="dark"] #cart-drawer {
+  background: #111;
+}
+[data-theme="dark"] .cart-title,
+[data-theme="dark"] .cart-item-name {
+  color: #f4f1ec;
+}
+[data-theme="dark"] .cart-item-size,
+[data-theme="dark"] .cart-total-label {
+  color: #999;
+}
+[data-theme="dark"] #mobile-menu {
+  background: #080808;
+}
+[data-theme="dark"] .mobile-nav-link {
+  color: rgba(255,255,255,0.7);
+}
+[data-theme="dark"] .mobile-close {
+  color: #999;
+}
+[data-theme="dark"] #toast {
+  background: var(--gold);
+  color: #080808;
+}
+[data-theme="dark"] .marquee-strip {
+  background: var(--gold);
+}
+[data-theme="dark"] .hero-grid-overlay {
+  background-image:
+    linear-gradient(rgba(200,164,90,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,164,90,.04) 1px, transparent 1px);
+}
+[data-theme="dark"] .about-img-caption {
+  background: var(--gold);
+  color: #080808;
+}
+[data-theme="dark"] #loader {
+  background: #080808;
+}
+[data-theme="dark"] .loader-logo {
+  color: #f4f1ec;
+}
+[data-theme="dark"] .cart-header {
+  border-color: rgba(255,255,255,0.07);
+}
+[data-theme="dark"] .cart-item {
+  border-color: rgba(255,255,255,0.07);
+}
+[data-theme="dark"] .cart-footer {
+  border-color: rgba(255,255,255,0.07);
+}
+[data-theme="dark"] .cart-overlay {
+  background: rgba(0,0,0,0.7);
+}
+[data-theme="dark"] .insta-hover {
+  background: rgba(8,8,8,0.5);
+}
+
+/* ─── SIZE GUIDE MODAL ─── */
+.size-modal-wrap{position:fixed;inset:0;z-index:6000;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:2rem;opacity:0;pointer-events:none;transition:opacity .4s}
+.size-modal-wrap.open{opacity:1;pointer-events:all}
+.size-modal{background:#f8f4ef;max-width:680px;width:100%;max-height:85vh;overflow-y:auto;padding:3rem;position:relative;transform:translateY(20px);transition:transform .4s}
+.size-modal-wrap.open .size-modal{transform:translateY(0)}
+.sm-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;font-size:1.4rem;color:#666;cursor:pointer;transition:color .25s}
+.sm-close:hover{color:#1a1208}
+.sm-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;color:#1a1208;margin-bottom:.4rem}
+.sm-sub{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:#9a8a7a;margin-bottom:2rem}
+.size-table{width:100%;border-collapse:collapse}
+.size-table th{background:#1a1208;color:#c8a45a;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;padding:.75rem 1rem;text-align:left;font-weight:400}
+.size-table td{padding:.7rem 1rem;font-size:.85rem;color:#6b5b4e;border-bottom:1px solid rgba(201,169,110,0.22);font-weight:300}
+.size-table tr:nth-child(even) td{background:#f0ebe3}
+.measure-tip{margin-top:2rem;padding:1.5rem;background:#f0ebe3;border-left:3px solid var(--gold)}
+.measure-tip h4{font-family:'Cormorant Garamond',serif;font-size:1.1rem;margin-bottom:.75rem;color:#1a1208}
+.measure-tip p{font-size:.82rem;line-height:1.85;color:#6b5b4e;font-weight:300}
+
 </style>
 </head>
 <body>
@@ -1343,11 +1647,39 @@ html[data-theme="light"] button.cat-btn {
   </div>
 </div>
 
+<!-- SIZE GUIDE MODAL -->
+<div class="size-modal-wrap" id="sizeModal" onclick="closeSizeModalBg(event)">
+  <div class="size-modal">
+    <button class="sm-close" onclick="closeSizeModal()">✕</button>
+    <div class="sm-title">Size Guide</div>
+    <div class="sm-sub">Bang Fashion — Find Your Perfect Fit</div>
+    <table class="size-table">
+      <thead><tr><th>Size</th><th>UK</th><th>Bust (cm)</th><th>Waist (cm)</th><th>Hips (cm)</th></tr></thead>
+      <tbody>
+        <tr><td>XS</td><td>6–8</td><td>80–84</td><td>60–64</td><td>86–90</td></tr>
+        <tr><td>S</td><td>8–10</td><td>84–88</td><td>64–68</td><td>90–94</td></tr>
+        <tr><td>M</td><td>10–12</td><td>88–94</td><td>68–74</td><td>94–100</td></tr>
+        <tr><td>L</td><td>12–14</td><td>94–100</td><td>74–80</td><td>100–106</td></tr>
+        <tr><td>XL</td><td>14–16</td><td>100–108</td><td>80–88</td><td>106–114</td></tr>
+        <tr><td>XXL</td><td>16–18</td><td>108–116</td><td>88–96</td><td>114–122</td></tr>
+        <tr><td>3XL</td><td>18–20</td><td>116–124</td><td>96–104</td><td>122–130</td></tr>
+      </tbody>
+    </table>
+    <div class="measure-tip">
+      <h4>How to Measure</h4>
+      <p><strong>Bust:</strong> Around the fullest part of your chest.<br>
+      <strong>Waist:</strong> Around the narrowest part, just above navel.<br>
+      <strong>Hips:</strong> Around the fullest part, ~20cm below waist.<br><br>
+      Between sizes? Size up for comfort. Still unsure? <a href="https://wa.me/27680980200" target="_blank" style="color:#a07840">WhatsApp us</a> and we'll help!</p>
+    </div>
+  </div>
+</div>
+
 <!-- NAV -->
 <nav id="navbar">
   <a href="#" class="nav-logo">
-    <div class="nav-logo-bb">BB</div>
-    BANG
+    <span style="display:inline-block; transform:scaleX(-1); color:#1a1208">ℬ</span><span style="color:var(--gold)">ℬ</span>
+    BANG <span style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.1rem; font-weight:300; letter-spacing:.1em; color:var(--gold)">Fashion</span>
   </a>
   <ul class="nav-links">
     <li><a href="#collections">Collections</a></li>
@@ -1355,6 +1687,7 @@ html[data-theme="light"] button.cat-btn {
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#why">Why Bang</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="#" onclick="openSizeModal();return false">Size Guide</a></li>
   </ul>
 <div class="nav-right">
     <button class="theme-toggle" onclick="toggleTheme()" id="theme-toggle" title="Toggle Theme">
@@ -1696,6 +2029,83 @@ html[data-theme="light"] button.cat-btn {
 // ─── DATA ───
 const products = [
   {
+    id: 'bang_toasted_bread',
+    name: 'Bang Toasted Bread Tee',
+    category: 'New Arrivals',
+    type: 'New Arrivals',
+    price: 500,
+    images: [
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778505009/bang_toasted_braed_ocvobs.jpg',
+    ],
+    badge: 'New Arrival',
+    desc: 'The Bang Toasted Bread Tee — bold toast graphic with the BANG branding. A statement piece that hits different.',
+    sizes: ['S','M','L','XL','XXL'],
+  },
+  {
+    id: 'bang_tag_tee',
+    name: 'Bang Tag Tee',
+    category: 'New Arrivals',
+    price: 500,
+    images: [
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778505007/bang_tag_i1fgup.jpg',
+    ],
+    badge: 'New Arrival',
+    desc: 'Bang Is Valuable — now with the iconic red tag graphic. Loud vision, silent grind. Worldwide service.',
+    sizes: ['S','M','L','XL','XXL'],
+  },
+  {
+    id: 'bang_popeye_tee',
+    name: 'Bang Popeye Tee',
+    category: 'New Arrivals',
+    type: 'New Arrivals',
+    price: 500,
+    images: [
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778505007/bang_popeye_yqhfdg.jpg',
+    ],
+    badge: 'New Arrival',
+    desc: 'The Bang Popeye Tee — classic cartoon energy meets Bang streetwear. Available in white and grey.',
+    sizes: ['S','M','L','XL','XXL'],
+  },
+  {
+    id: 'bang_supply_tee',
+    name: 'Bang Supply Tee',
+    category: 'New Arrivals',
+    type: 'New Arrivals',
+    price: 500,
+    images: [
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778505007/bang_supply_f7dzil.jpg',
+    ],
+    badge: 'New Arrival',
+    desc: 'Bang Supply — Re:Bang Is Valuable. Superior Brand. Open 24 hours daily. Clean collegiate print on white.',
+    sizes: ['S','M','L','XL','XXL'],
+  },
+  {
+    id: 'bang_biv_20_new',
+    name: 'Bang Is Valuable 2.0 (New)',
+    category: 'New Arrivals',
+    type: 'New Arrivals',
+    price: 500,
+    images: [
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778505006/bang_is_valuable_2.0_dfsx7j.jpg',
+    ],
+    badge: 'New Arrival',
+    desc: 'Bang Is Valuable 2.0 — new colourway drop. The message stays the same, the look levels up.',
+    sizes: ['S','M','L','XL','XXL'],
+  },
+  {
+    id: 'bang_full_tank',
+    name: 'Bang Full Tank',
+    category: 'New Arrivals',
+    type: 'New Arrivals',
+    price: 420,
+    images: [
+      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778505006/bang_full_tank_ootvps.jpg',
+    ],
+    badge: 'New Arrival',
+    desc: 'The Bang Full Tank — clean cut, premium fabric. Perfect for summer. Bang Is Valuable all year round.',
+    sizes: ['S','M','L','XL','XXL'],
+  },
+  {
     id: 'bang_bb_dress',
     name: 'Bang BB Dress',
     category: 'BB Collection',
@@ -1892,84 +2302,7 @@ const products = [
     desc: 'The Bang Root tee. Black with large green BANG back print. A standout piece that speaks for itself.',
     sizes: ['S','M','L','XL','XXL'],
 },
-  {
-    id: 'bang_toasted_bread',
-    name: 'Bang Toasted Bread Tee',
-    category: 'New Arrivals',
-    type: 'New Arrivals',
-    price: 500,
-    images: [
-      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778505009/bang_toasted_braed_ocvobs.jpg',
-    ],
-    badge: 'New Arrival',
-    desc: 'The Bang Toasted Bread Tee — bold toast graphic with the BANG branding. A statement piece that hits different.',
-    sizes: ['S','M','L','XL','XXL'],
-  },
-  {
-    id: 'bang_tag_tee',
-    name: 'Bang Tag Tee',
-    category: 'New Arrivals',
-    price: 500,
-    images: [
-      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778505007/bang_tag_i1fgup.jpg',
-    ],
-    badge: 'New Arrival',
-    desc: 'Bang Is Valuable — now with the iconic red tag graphic. Loud vision, silent grind. Worldwide service.',
-    sizes: ['S','M','L','XL','XXL'],
-  },
-  {
-    id: 'bang_popeye_tee',
-    name: 'Bang Popeye Tee',
-    category: 'New Arrivals',
-    type: 'New Arrivals',
-    price: 500,
-    images: [
-      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778505007/bang_popeye_yqhfdg.jpg',
-    ],
-    badge: 'New Arrival',
-    desc: 'The Bang Popeye Tee — classic cartoon energy meets Bang streetwear. Available in white and grey.',
-    sizes: ['S','M','L','XL','XXL'],
-  },
-  {
-    id: 'bang_supply_tee',
-    name: 'Bang Supply Tee',
-    category: 'New Arrivals',
-    type: 'New Arrivals',
-    price: 500,
-    images: [
-      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778505007/bang_supply_f7dzil.jpg',
-    ],
-    badge: 'New Arrival',
-    desc: 'Bang Supply — Re:Bang Is Valuable. Superior Brand. Open 24 hours daily. Clean collegiate print on white.',
-    sizes: ['S','M','L','XL','XXL'],
-  },
-  {
-    id: 'bang_biv_20_new',
-    name: 'Bang Is Valuable 2.0 (New)',
-    category: 'New Arrivals',
-    type: 'New Arrivals',
-    price: 500,
-    images: [
-      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778505006/bang_is_valuable_2.0_dfsx7j.jpg',
-    ],
-    badge: 'New Arrival',
-    desc: 'Bang Is Valuable 2.0 — new colourway drop. The message stays the same, the look levels up.',
-    sizes: ['S','M','L','XL','XXL'],
-  },
-  {
-    id: 'bang_full_tank',
-    name: 'Bang Full Tank',
-    category: 'New Arrivals',
-    type: 'New Arrivals',
-    price: 420,
-    images: [
-      'https://res.cloudinary.com/dopqw0sji/image/upload/v1778505006/bang_full_tank_ootvps.jpg',
-    ],
-    badge: 'New Arrival',
-    desc: 'The Bang Full Tank — clean cut, premium fabric. Perfect for summer. Bang Is Valuable all year round.',
-    sizes: ['S','M','L','XL','XXL'],
-  },
-];;
+  ];;
 
 const instaImgs = [
   'https://res.cloudinary.com/dopqw0sji/image/upload/v1778075525/img1_ckbl3u.png',
@@ -1990,22 +2323,28 @@ let selectedSize = null;
 function toggleTheme() {
   const html = document.documentElement;
   const btn = document.getElementById('theme-toggle');
-  const isLight = html.getAttribute('data-theme') === 'light';
-  if (isLight) {
-    html.removeAttribute('data-theme');
-    btn.textContent = '☀';
-    localStorage.setItem('bang-theme', 'dark');
-  } else {
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  if (isDark) {
     html.setAttribute('data-theme', 'light');
     btn.textContent = '🌙';
     localStorage.setItem('bang-theme', 'light');
+  } else {
+    html.setAttribute('data-theme', 'dark');
+    btn.textContent = '☀';
+    localStorage.setItem('bang-theme', 'dark');
   }
 }
 
 // Apply saved theme immediately on load
 (function() {
   const saved = localStorage.getItem('bang-theme');
-  if (saved === 'light') {
+  if (saved === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('theme-toggle');
+      if (btn) btn.textContent = '☀';
+    });
+  } else {
     document.documentElement.setAttribute('data-theme', 'light');
     document.addEventListener('DOMContentLoaded', () => {
       const btn = document.getElementById('theme-toggle');
@@ -2273,6 +2612,11 @@ function submitContactForm(e) {
   e.preventDefault();
   showToast('Message sent! We\'ll be in touch 🙌');
 }
+
+// ─── SIZE GUIDE ───
+function openSizeModal()     { document.getElementById('sizeModal').classList.add('open');    document.body.style.overflow='hidden'; }
+function closeSizeModal()    { document.getElementById('sizeModal').classList.remove('open'); document.body.style.overflow=''; }
+function closeSizeModalBg(e) { if(e.target===e.currentTarget) closeSizeModal(); }
 
 // ─── SCROLL REVEAL ───
 const revealEls = document.querySelectorAll('.reveal');
