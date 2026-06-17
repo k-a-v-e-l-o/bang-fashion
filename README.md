@@ -4,8 +4,9 @@ A fully responsive e-commerce website for **Bang Fashion**, a premium streetwear
 
 ![Bang Fashion](frontend/images/tee_tag.jpeg)
 
-## 🔗 Live Demo
-> Coming soon via GitHub Pages
+🔗 **[Visit the Live Site → k-a-v-e-l-o.github.io/bang-fashion](https://k-a-v-e-l-o.github.io/bang-fashion/)**
+
+---
 
 ## ✨ Features
 - Product catalogue with category filtering (New Arrivals, T-Shirts, Hoodies, Sets, Dresses)
@@ -25,6 +26,7 @@ A fully responsive e-commerce website for **Bang Fashion**, a premium streetwear
 - Cloudinary (image hosting)
 
 ## 📁 Project Structure
+```
 bang-fashion/
 ├── frontend/
 │   ├── index.html
@@ -32,8 +34,10 @@ bang-fashion/
 │   └── js/
 ├── .gitignore
 └── README.md
+```
+
 ## 🚀 Getting Started
-Just open `https://k-a-v-e-l-o.github.io/bang-fashion/` in your browser — no build step needed.
+Just click the link above or open [https://k-a-v-e-l-o.github.io/bang-fashion/](https://k-a-v-e-l-o.github.io/bang-fashion/) in your browser — no build step needed.
 
 ## 📱 Contact
 - Instagram: [@bangentertainment](https://www.instagram.com/bangentertainment/)
