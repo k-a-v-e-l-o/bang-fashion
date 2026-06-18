@@ -790,6 +790,41 @@ html[data-theme="light"] button.cat-btn.active {
 [data-theme="light"] .collection-card-name { color:#1a1208; }
 [data-theme="light"] .collection-card-btn { background:#1a1208; color:#f4f1ec; }
 [data-theme="light"] .collection-card-btn:hover { background:var(--gold); color:#1a1208; }
+
+/* ─── CARD THUMBNAILS (Nike-style) ─── */
+.card-thumbs {
+  display: flex;
+  gap: 4px;
+  padding: 6px 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  background: var(--bg-dark, #111);
+}
+.card-thumbs::-webkit-scrollbar { display: none; }
+.card-thumb {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: border-color .2s;
+}
+.card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+.card-thumb.active {
+  border-color: var(--black);
+}
+[data-theme="light"] .card-thumb.active {
+  border-color: #1a1208;
+}
+[data-theme="light"] .card-thumbs {
+  background: #e4ddd3;
+}
 .collection-card img {
   width:100%; height:100%; object-fit:cover; object-position:top center;
   transition:transform .6s cubic-bezier(.25,.46,.45,.94);
@@ -1636,12 +1671,22 @@ html[data-theme="light"] button.cat-btn {
         <div class="modal-sizes-label">Select Size</div>
         <div class="size-grid" id="size-grid"></div>
       </div>
+      <div class="modal-quantity" style="display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem;">
+        <span style="font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);font-weight:700;">Quantity</span>
+        <div style="display:flex;align-items:center;gap:0;">
+          <button onclick="changeQty(-1)" style="width:36px;height:36px;border:1px solid var(--border);color:var(--white);font-size:1.1rem;display:flex;align-items:center;justify-content:center;background:transparent;transition:border-color .2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">−</button>
+          <span id="modal-qty" style="width:44px;height:36px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:600;">1</span>
+          <button onclick="changeQty(1)" style="width:36px;height:36px;border:1px solid var(--border);color:var(--white);font-size:1.1rem;display:flex;align-items:center;justify-content:center;background:transparent;transition:border-color .2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">+</button>
+        </div>
+        <span id="modal-qty-price" style="font-size:.9rem;color:var(--gold);font-weight:700;margin-left:auto;"></span>
+      </div>
       <div class="modal-actions">
         <button class="btn-add-cart" onclick="addToCartFromModal()">Add to Bag</button>
         <button class="btn-whatsapp" onclick="orderWhatsApp()">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
           Order on WhatsApp
         </button>
+        <button onclick="closeModal()" style="padding:1rem;border:1px solid var(--border);color:var(--white);font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;font-weight:600;background:transparent;transition:border-color .25s,color .25s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--white)'">Continue Shopping</button>
       </div>
     </div>
   </div>
@@ -2318,6 +2363,7 @@ const instaImgs = [
 let cart = [];
 let currentProduct = null;
 let selectedSize = null;
+let selectedQty = 1;
 
 // ─── THEME ───
 function toggleTheme() {
@@ -2385,25 +2431,44 @@ function buildGrid(category) {
     const src = p.images[0];
     const card = document.createElement('div');
     card.className = 'collection-card';
+    const thumbsHTML = p.images.length > 1
+      ? `<div class="card-thumbs">
+          ${p.images.slice(0,4).map((img, i) => `
+            <div class="card-thumb ${i === 0 ? 'active' : ''}" data-img="${img}">
+              <img src="${img}" alt="${p.name} view ${i+1}" loading="lazy">
+            </div>
+          `).join('')}
+        </div>`
+      : '';
+
     card.innerHTML = `
       <div class="collection-card-img-wrap">
         ${p.badge ? `<div class="collection-badge">${p.badge}</div>` : ''}
-        <img src="${src}" alt="${p.name}" loading="lazy" onerror="this.style.background='#1a1a1a'">
+        <img class="card-main-img" src="${src}" alt="${p.name}" loading="lazy" onerror="this.style.background='#1a1a1a'">
       </div>
+      ${thumbsHTML}
       <div class="collection-card-body">
-        <div class="collection-card-cat">${p.category}</div>
+        ${p.badge ? `<div class="collection-card-cat" style="color:var(--gold)">${p.badge}</div>` : ''}
         <div class="collection-card-name">${p.name}</div>
+        <div style="font-size:.72rem;color:var(--muted);margin-bottom:.3rem;">${p.category}</div>
         <div class="collection-card-bottom">
           <div class="collection-card-price">R ${p.price.toLocaleString()}</div>
-          <button class="collection-card-btn" onclick="event.stopPropagation();openModal(arguments[0]||event)">VIEW & ADD</button>
         </div>
       </div>
     `;
     card.addEventListener('click', () => openModal(p));
-    card.querySelector('.collection-card-btn').addEventListener('click', (e) => {
-      e.stopPropagation();
-      openModal(p);
+
+    // Thumbnail switching
+    card.querySelectorAll('.card-thumb').forEach(thumb => {
+      thumb.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const newSrc = thumb.dataset.img;
+        card.querySelector('.card-main-img').src = newSrc;
+        card.querySelectorAll('.card-thumb').forEach(t => t.classList.remove('active'));
+        thumb.classList.add('active');
+      });
     });
+
     grid.appendChild(card);
   });
 }
@@ -2465,6 +2530,8 @@ function openModal(p) {
     sg.appendChild(b);
   });
 
+  selectedQty = 1;
+  document.getElementById('modal-qty').textContent = selectedQty;
   document.getElementById('modal-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -2552,16 +2619,24 @@ function removeFromCart(idx) {
   updateCartUI();
 }
 
+function changeQty(delta) {
+  selectedQty = Math.max(1, Math.min(10, selectedQty + delta));
+  document.getElementById('modal-qty').textContent = selectedQty;
+  if(currentProduct) {
+    document.getElementById('modal-qty-price').textContent = selectedQty > 1 ? `R ${(currentProduct.price * selectedQty).toLocaleString()}` : '';
+  }
+}
+
 function addToCartFromModal() {
   if(!currentProduct) return;
   if(!selectedSize) { showToast('Please select a size'); return; }
   const existing = cart.find(c => c.id === currentProduct.id && c.size === selectedSize);
-  if(existing) { existing.qty++; }
-  else { cart.push({...currentProduct, img: currentProduct.images[0], size: selectedSize, qty: 1}); }
+  if(existing) { existing.qty += selectedQty; }
+  else { cart.push({...currentProduct, img: currentProduct.images[0], size: selectedSize, qty: selectedQty}); }
   updateCartUI();
   closeModal();
   openCart();
-  showToast('Added to bag!');
+  showToast(`${selectedQty > 1 ? selectedQty + 'x ' : ''}Added to bag!`);
 }
 
 function openCart() {
