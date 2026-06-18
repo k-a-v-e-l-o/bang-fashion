@@ -14,7 +14,7 @@ router.post('/subscribe', async (req, res) => {
 
   try {
     const existing = await pool.query(
-      'SELECT id FROM newsletters WHERE email = $1',
+      'SELECT id FROM newsletter_subscribers WHERE email = $1',
       [email]
     );
     if (existing.rows.length > 0) {
@@ -23,7 +23,7 @@ router.post('/subscribe', async (req, res) => {
 
     // insert
     await pool.query(
-      'INSERT INTO newsletters (email, subscribed_at) VALUES ($1, NOW())',
+      'INSERT INTO newsletter_subscribers (email, subscribed_at) VALUES ($1, NOW())',
       [email]
     );
 

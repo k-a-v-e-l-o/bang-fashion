@@ -23,7 +23,7 @@ router.post('/login', async (req, res) => {
     }
     const token = jwt.sign(
       { id: admin.id, username: admin.username },
-      'bang_fashion_secret_2026',
+      process.env.JWT_SECRET,
       { expiresIn: '8h' }
     );
     res.json({ token, username: admin.username });

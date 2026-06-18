@@ -9,13 +9,13 @@ router.get('/', async (req, res) => {
     const products = await pool.query(`
       SELECT 
         p.id, p.name, p.description, p.price, p.badge, p.type,
-        p.main_image_url, p.is_active,
+        p.main_image, p.is_in_stock,
         c.name AS category,
-        (SELECT ARRAY_AGG(ps.size ORDER BY ps.size) FROM product_sizes ps WHERE ps.product_id = p.id) AS sizes,
+        (SELECT ARRAY_AGG(pv.size ORDER BY pv.size) FROM product_variants pv WHERE pv.product_id = p.id) AS sizes,
         (SELECT ARRAY_AGG(pi.image_url ORDER BY pi.sort_order) FROM product_images pi WHERE pi.product_id = p.id) AS images
       FROM products p
       JOIN categories c ON c.id = p.category_id
-      WHERE p.is_active = true
+      WHERE p.is_in_stock = true
       ORDER BY p.id
     `);
     res.json(products.rows);
@@ -31,9 +31,9 @@ router.get('/all', authMiddleware, async (req, res) => {
     const products = await pool.query(`
       SELECT 
         p.id, p.name, p.description, p.price, p.badge, p.type,
-        p.main_image_url, p.is_active,
+        p.main_image, p.is_in_stock,
         c.name AS category,
-        (SELECT ARRAY_AGG(ps.size ORDER BY ps.size) FROM product_sizes ps WHERE ps.product_id = p.id) AS sizes,
+        (SELECT ARRAY_AGG(pv.size ORDER BY pv.size) FROM product_variants pv WHERE pv.product_id = p.id) AS sizes,
         (SELECT ARRAY_AGG(pi.image_url ORDER BY pi.sort_order) FROM product_images pi WHERE pi.product_id = p.id) AS images
       FROM products p
       JOIN categories c ON c.id = p.category_id
@@ -48,23 +48,23 @@ router.get('/all', authMiddleware, async (req, res) => {
 
 // POST /api/products — admin only, add new product
 router.post('/', authMiddleware, async (req, res) => {
-  const { name, description, price, badge, type, main_image_url, category_id, sizes, images } = req.body;
+  const { name, description, price, badge, main_image, category_id, sizes, images } = req.body;
   const client = await pool.connect();
   try {
     await client.query('BEGIN');
     const productResult = await client.query(`
-      INSERT INTO products (category_id, name, description, price, badge, type, main_image_url, is_active, created_at)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, true, NOW())
+      INSERT INTO products (category_id, name, description, price, badge, main_image, is_in_stock, created_at)
+      VALUES ($1, $2, $3, $4, $5, $6, true, NOW())
       RETURNING id
-    `, [category_id, name, description, price, badge, type, main_image_url]);
+    `, [category_id, name, description, price, badge, main_image]);
 
     const productId = productResult.rows[0].id;
 
     if (sizes && sizes.length > 0) {
       for (const size of sizes) {
         await client.query(
-          'INSERT INTO product_sizes (product_id, size) VALUES ($1, $2)',
-          [productId, size]
+          'INSERT INTO product_variants (product_id, size, color) VALUES ($1, $2, $3)',
+          [productId, size, 'Default']
         );
       }
     }
@@ -93,7 +93,7 @@ router.post('/', authMiddleware, async (req, res) => {
 router.patch('/:id/toggle', authMiddleware, async (req, res) => {
   try {
     await pool.query(
-      'UPDATE products SET is_active = NOT is_active WHERE id = $1',
+      'UPDATE products SET is_in_stock = NOT is_in_stock WHERE id = $1',
       [req.params.id]
     );
     res.json({ message: 'Product status toggled' });
