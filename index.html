@@ -1906,7 +1906,7 @@ html[data-theme="light"] button.cat-btn {
       <div class="auth-sub">Login to your Bang Fashion account</div>
       <div class="auth-error" id="login-error"></div>
       <div class="auth-success" id="login-success"></div>
-      <input class="auth-input" type="email" id="login-email" placeholder="Email address" oninput="validateEmailField('login-email','login-email-err');checkLoginReady()">
+      <input class="auth-input" type="email" id="login-email" placeholder="Email address" oninput="validateEmailField('login-email','login-email-err',false);checkLoginReady()" onblur="validateEmailField('login-email','login-email-err',true);checkLoginReady()">
       <span class="field-error" id="login-email-err">Please enter a valid email address</span>
       <div class="auth-input-wrap">
         <input class="auth-input" type="password" id="login-password" placeholder="Password" oninput="validatePasswordField('login-password','login-pass-err');checkLoginReady()">
@@ -1925,7 +1925,7 @@ html[data-theme="light"] button.cat-btn {
       <div class="auth-success" id="register-success"></div>
       <input class="auth-input" type="text" id="register-name" placeholder="Full name" oninput="validateNameField()">
       <span class="field-error" id="register-name-err">Name must be at least 2 characters</span>
-      <input class="auth-input" type="email" id="register-email" placeholder="Email address" oninput="validateEmailField('register-email','register-email-err')">
+      <input class="auth-input" type="email" id="register-email" placeholder="Email address" oninput="validateEmailField('register-email','register-email-err',false)" onblur="validateEmailField('register-email','register-email-err',true)">
       <span class="field-error" id="register-email-err">Please enter a valid email address</span>
       <input class="auth-input" type="tel" id="register-phone" placeholder="Phone number (optional)">
       <div class="auth-input-wrap">
@@ -3175,33 +3175,39 @@ function checkLoginReady() {
   btn.style.cursor = ready ? 'pointer' : 'not-allowed';
 }
 
-function validateEmailField(inputId, errId) {
+function validateEmailField(inputId, errId, isFinal = false) {
   const input = document.getElementById(inputId);
   const err = document.getElementById(errId);
   const val = input.value.trim();
 
-  // Clear state if empty
+  // Clear if empty
   if(!val) {
     input.classList.remove('invalid','valid');
     err.classList.remove('show');
     return;
   }
 
-  // Only show green AFTER @ and a dot and at least 2 chars of TLD are typed
-  // This prevents premature green on incomplete TLDs like .coj, .con
-  const hasAtSign = val.includes('@');
-  const dotAfterAt = hasAtSign && val.split('@')[1]?.includes('.');
-  const tldPart = dotAfterAt ? val.split('@')[1].split('.').pop() : '';
-  const tldLooksComplete = tldPart.length >= 2;
+  const hasAt = val.includes('@');
+  const afterAt = hasAt ? val.split('@')[1] : '';
+  const hasDot = afterAt.includes('.');
+  const tld = hasDot ? afterAt.split('.').pop() : '';
 
-  if(!hasAtSign || !dotAfterAt || !tldLooksComplete) {
-    // Still typing — show neutral (no green, no red yet)
-    input.classList.remove('invalid','valid');
-    err.classList.remove('show');
+  // While typing — only show red if clearly wrong structure
+  // Don't show green until blur (isFinal)
+  if(!isFinal) {
+    // Only mark invalid while typing if structure is clearly broken
+    if(hasAt && hasDot && tld.length >= 2 && !isValidEmail(val)) {
+      input.classList.add('invalid'); input.classList.remove('valid');
+      err.classList.add('show');
+    } else {
+      // Still typing — neutral
+      input.classList.remove('invalid','valid');
+      err.classList.remove('show');
+    }
     return;
   }
 
-  // Now do full validation
+  // On blur — full strict validation
   if(!isValidEmail(val)) {
     input.classList.add('invalid'); input.classList.remove('valid');
     err.classList.add('show');
