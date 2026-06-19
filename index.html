@@ -2337,7 +2337,14 @@ html[data-theme="light"] button.cat-btn {
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+// ─── SUPABASE INIT ───
+const supabase = window.supabase.createClient(
+  'https://kscakfhgoecqzgsqhvxs.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtzY2FrZmhnb2VjcXpnc3FodnhzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE2OTc2NTgsImV4cCI6MjA5NzI3MzY1OH0.hLoG2XGvZ4Vmg1XnFlRRDhijwPZoedij-tKjJw_JxeI'
+);
+
 // ─── DATA ───
 const products = [
   {
@@ -3367,23 +3374,28 @@ async function handleLogin() {
   const email = document.getElementById('login-email').value.trim();
   const password = document.getElementById('login-password').value;
   try {
-    const res = await fetch(`${API}/api/customers/login`, {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({email, password})
-    });
-    const data = await res.json();
-    if(!res.ok) { setAuthError('login-error', data.error || 'Login failed'); return; }
-    localStorage.setItem('bang-token', data.token);
-    localStorage.setItem('bang-user', JSON.stringify(data.user));
-    currentUser = data.user;
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    if(error) {
+      if(error.message.includes('Email not confirmed')) {
+        setAuthError('login-error', 'Please check your email and confirm your account first.');
+      } else if(error.message.includes('Invalid login')) {
+        setAuthError('login-error', 'Incorrect email or password.');
+      } else {
+        setAuthError('login-error', error.message);
+      }
+      return;
+    }
+    const user = data.user;
+    const displayName = user.user_metadata?.name || email.split('@')[0];
+    currentUser = { name: displayName, email: user.email, id: user.id };
+    localStorage.setItem('bang-user', JSON.stringify(currentUser));
     updateAuthUI();
     closeAuthModal();
-    showToast(`Welcome back, ${data.user.name.split(' ')[0]}! 🖤`);
+    showToast(`Welcome back, ${displayName.split(' ')[0]}! 🖤`);
   } catch(err) {
     setAuthError('login-error', 'Connection error. Please try again.');
   }
 }
-
 async function handleRegister() {
   if(!validateRegisterInputs()) return;
   const name = document.getElementById('register-name').value.trim();
@@ -3391,18 +3403,24 @@ async function handleRegister() {
   const phone = document.getElementById('register-phone').value.trim();
   const password = document.getElementById('register-password').value;
   try {
-    const res = await fetch(`${API}/api/customers/register`, {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({name, email, phone, password})
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: { name, phone },
+        emailRedirectTo: 'https://bangfashion.com'
+      }
     });
-    const data = await res.json();
-    if(!res.ok) { setAuthError('register-error', data.error || 'Registration failed'); return; }
-    localStorage.setItem('bang-token', data.token);
-    localStorage.setItem('bang-user', JSON.stringify(data.user));
-    currentUser = data.user;
-    updateAuthUI();
+    if(error) {
+      if(error.message.includes('already registered')) {
+        setAuthError('register-error', 'This email is already registered. Try logging in.');
+      } else {
+        setAuthError('register-error', error.message);
+      }
+      return;
+    }
     closeAuthModal();
-    showToast(`Welcome to Bang, ${data.user.name.split(' ')[0]}! 🖤`);
+    showToast(`Welcome to Bang, ${name.split(' ')[0]}! Check your email to confirm 🖤`);
   } catch(err) {
     setAuthError('register-error', 'Connection error. Please try again.');
   }
@@ -3411,13 +3429,22 @@ async function handleRegister() {
 async function handleForgotPassword() {
   const email = document.getElementById('forgot-email').value.trim();
   if(!email) { setAuthError('forgot-error', 'Please enter your email'); return; }
-  setAuthSuccess('forgot-success', 'If this email exists, a reset link has been sent.');
+  if(!isValidEmail(email)) { setAuthError('forgot-error', 'Please enter a valid email address'); return; }
+  try {
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: 'https://bangfashion.com?reset=true'
+    });
+    if(error) { setAuthError('forgot-error', error.message); return; }
+    setAuthSuccess('forgot-success', '✅ Reset link sent! Check your inbox (and spam folder).');
+  } catch(err) {
+    setAuthError('forgot-error', 'Connection error. Please try again.');
+  }
 }
 
-function logout() {
-  localStorage.removeItem('bang-token');
-  localStorage.removeItem('bang-user');
+async function logout() {
+  await supabase.auth.signOut();
   currentUser = null;
+  localStorage.removeItem('bang-user');
   updateAuthUI();
   showToast('Logged out successfully');
 }
@@ -3439,13 +3466,28 @@ function updateAuthUI() {
 }
 
 // Restore session on page load
-(function() {
-  const token = localStorage.getItem('bang-token');
-  const user = localStorage.getItem('bang-user');
-  if(token && user) {
-    currentUser = JSON.parse(user);
+(async function() {
+  const { data: { session } } = await supabase.auth.getSession();
+  if(session) {
+    const user = session.user;
+    const displayName = user.user_metadata?.name || user.email.split('@')[0];
+    currentUser = { name: displayName, email: user.email, id: user.id };
+    localStorage.setItem('bang-user', JSON.stringify(currentUser));
     updateAuthUI();
   }
+  // Listen for auth state changes
+  supabase.auth.onAuthStateChange((_event, session) => {
+    if(session) {
+      const user = session.user;
+      const displayName = user.user_metadata?.name || user.email.split('@')[0];
+      currentUser = { name: displayName, email: user.email, id: user.id };
+      localStorage.setItem('bang-user', JSON.stringify(currentUser));
+    } else {
+      currentUser = null;
+      localStorage.removeItem('bang-user');
+    }
+    updateAuthUI();
+  });
 })();
 
 // ─── SCROLL REVEAL ───
