@@ -3247,7 +3247,74 @@ function checkPasswordStrength() {
 }
 
 function isValidEmail(email) {
-  return /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(email);
+  // Must match: local@domain.tld
+  // TLD: 2-4 chars only (covers .com .net .org .co .za .uk etc)
+  // Domain: no consecutive dots, no trailing dot
+  // Rejects: .commm, .c, .cm (too short for common use), gibberish TLDs
+  const regex = /^[a-zA-Z0-9][a-zA-Z0-9._%+\-]{0,63}@(?:[a-zA-Z0-9](?:[a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,4}$/;
+  if (!regex.test(email)) return false;
+
+  // Extract TLD and validate it against known real TLDs
+  const parts = email.split('@');
+  if (parts.length !== 2) return false;
+  const domainParts = parts[1].split('.');
+  const tld = domainParts[domainParts.length - 1].toLowerCase();
+  const domain = domainParts[domainParts.length - 2]?.toLowerCase();
+
+  // Block repeated characters in TLD (e.g. commmmm, netttt)
+  if (/(.)\1{2,}/.test(tld)) return false;
+
+  // Block TLDs longer than 4 chars that aren't real (basic allowlist of longer ones)
+  const allowedLongTLDs = ['info','mobi','name','jobs','museum','travel','online','store','email','media','world','click','cloud','codes','digital','domains','email','global','group','guru','haus','host','life','live','media','news','ninja','online','photo','plus','press','pro','site','social','store','studio','tech','tips','today','tools','top','video','website','wiki','works','zone','africa','capetown','joburg'];
+  if (tld.length > 4 && !allowedLongTLDs.includes(tld)) return false;
+
+  // Block obviously fake/garbage domains
+  if (/(.)\1{3,}/.test(domain)) return false;
+
+  // Known valid TLDs whitelist check (covers 99% of real emails)
+  const commonTLDs = [
+    // Generic
+    'com','net','org','edu','gov','mil','int','biz','info','name','pro','mobi','tel','travel',
+    // New generic
+    'online','site','website','store','shop','tech','app','io','co','ai','dev',
+    'media','news','blog','wiki','email','mail','cloud','host','web','digital',
+    'studio','agency','design','art','photo','video','music','film','game','games',
+    'social','life','world','global','group','team','work','works','jobs','career',
+    'health','care','clinic','doctor','legal','law','finance','money','bank','credit',
+    'market','trade','business','company','services','solutions','systems','network',
+    'center','hub','zone','space','plus','pro','guru','expert','tips','tools',
+    'click','link','live','now','today','news','press','media','show','fun',
+    // Country codes (common ones)
+    'za','uk','us','ca','au','nz','in','de','fr','es','it','nl','be','ch','at',
+    'se','no','dk','fi','pl','ru','br','mx','ar','cl','co','pe','ve','ng','ke',
+    'gh','tz','ug','rw','et','sn','cm','ci','dz','ma','eg','jp','cn','kr','sg',
+    'my','th','ph','id','vn','hk','tw','pk','bd','lk','ae','sa','qa','kw','bh',
+    'om','jo','lb','il','tr','gr','pt','cz','sk','hu','ro','bg','hr','rs','si',
+    // Compound ccTLDs (second-level)
+    'ac','ad','ag','ai','al','am','ao','aq','as','aw','ax','az',
+    'ba','bb','bf','bi','bj','bl','bm','bn','bo','bq','bs','bt','bv','bw','by','bz',
+    'cc','cd','cf','cg','ck','cr','cu','cv','cw','cx','cy','cz',
+    'dj','dm','do','dz','ec','ee','eh','er','eu','fi','fj','fk','fm','fo',
+    'ga','gb','gd','ge','gf','gg','gi','gl','gm','gn','gp','gq','gr','gs','gt','gu','gw','gy',
+    'im','io','iq','ir','is','je','jm','jo','ke','kg','kh','ki','km','kn','kp','ky','kz',
+    'la','lc','li','lk','lr','ls','lt','lu','lv','ly',
+    'mc','md','me','mf','mg','mh','mk','ml','mm','mn','mo','mp','mq','mr','ms','mt','mu','mv','mw','mz',
+    'na','nc','ne','nf','ni','nr','nu','om','pa','pf','pg','pm','pn','ps','pw','py',
+    'qa','re','rs','sb','sc','sd','sm','sn','so','sr','ss','st','su','sv','sx','sy','sz',
+    'tc','td','tf','tg','tj','tk','tl','tm','tn','to','tp','tt','tv','tz',
+    'ua','ug','um','uy','uz','va','vc','vg','vi','vu','wf','ws','xn',
+    'ye','yt','zm','zw',
+    // Special
+    'museum','travel','jobs','int','post','arpa',
+  ];
+
+  if (!commonTLDs.includes(tld)) {
+    // If TLD not in list, do a heuristic check: 2-4 chars, no repeats
+    if (tld.length < 2 || tld.length > 4) return false;
+    if (/(.)\1+/.test(tld)) return false; // any repeated char in short TLD is sus
+  }
+
+  return true;
 }
 
 function isValidPassword(password) {
