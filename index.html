@@ -3098,6 +3098,17 @@ function closeMobileProduct() {
 
 // ─── AUTH ───
 const API = 'https://bang-fashion-production.up.railway.app';
+
+// Handle password reset redirect
+if(window.location.hash.includes('type=recovery')) {
+  const newPass = prompt('Enter your new password (min 8 characters, include uppercase, number, special char):');
+  if(newPass && newPass.length >= 8) {
+    supabaseClient.auth.updateUser({ password: newPass }).then(({ error }) => {
+      if(error) { alert('Error: ' + error.message); }
+      else { alert('Password updated successfully! You can now login.'); window.location.hash = ''; }
+    });
+  }
+}
 let currentUser = null;
 
 function togglePasswordView(inputId, btn) {
@@ -3487,7 +3498,7 @@ async function handleForgotPassword() {
   if(!isValidEmail(email)) { setAuthError('forgot-error', 'Please enter a valid email address'); return; }
   try {
     const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
-      redirectTo: 'https://bangfashion.com?reset=true'
+      redirectTo: window.location.origin + '?reset=true'
     });
     if(error) { setAuthError('forgot-error', error.message); return; }
     setAuthSuccess('forgot-success', '✅ Reset link sent! Check your inbox (and spam folder).');
