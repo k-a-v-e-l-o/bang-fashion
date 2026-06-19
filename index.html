@@ -1906,15 +1906,15 @@ html[data-theme="light"] button.cat-btn {
       <div class="auth-sub">Login to your Bang Fashion account</div>
       <div class="auth-error" id="login-error"></div>
       <div class="auth-success" id="login-success"></div>
-      <input class="auth-input" type="email" id="login-email" placeholder="Email address" oninput="validateEmailField('login-email','login-email-err')">
+      <input class="auth-input" type="email" id="login-email" placeholder="Email address" oninput="validateEmailField('login-email','login-email-err');checkLoginReady()">
       <span class="field-error" id="login-email-err">Please enter a valid email address</span>
       <div class="auth-input-wrap">
-        <input class="auth-input" type="password" id="login-password" placeholder="Password" oninput="validatePasswordField('login-password','login-pass-err')">
+        <input class="auth-input" type="password" id="login-password" placeholder="Password" oninput="validatePasswordField('login-password','login-pass-err');checkLoginReady()">
         <button class="auth-eye" onclick="togglePasswordView('login-password', this)" type="button">👁</button>
       </div>
-      <span class="field-error" id="login-pass-err">Password must be at least 6 characters</span>
+      <span class="field-error" id="login-pass-err">Password must be at least 8 characters</span>
       <div class="auth-forgot" onclick="switchAuthTab('forgot')">Forgot password?</div>
-      <button class="auth-btn" onclick="handleLogin()">Login →</button>
+      <button class="auth-btn" id="login-submit-btn" onclick="handleLogin()" disabled style="opacity:.5;cursor:not-allowed;">Login →</button>
     </div>
 
     <!-- REGISTER PANEL -->
@@ -3164,6 +3164,17 @@ const checkIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" st
 const crossIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
 const circleIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/></svg>`;
 
+function checkLoginReady() {
+  const email = document.getElementById('login-email').value.trim();
+  const pass = document.getElementById('login-password').value;
+  const btn = document.getElementById('login-submit-btn');
+  if(!btn) return;
+  const ready = isValidEmail(email) && pass.length >= 8;
+  btn.disabled = !ready;
+  btn.style.opacity = ready ? '1' : '.5';
+  btn.style.cursor = ready ? 'pointer' : 'not-allowed';
+}
+
 function validateEmailField(inputId, errId) {
   const input = document.getElementById(inputId);
   const err = document.getElementById(errId);
@@ -3197,7 +3208,7 @@ function validatePasswordField(inputId, errId) {
   const err = document.getElementById(errId);
   const val = input.value;
   if(!val) { input.classList.remove('invalid','valid'); err.classList.remove('show'); return; }
-  if(val.length < 6) {
+  if(val.length < 8) {
     input.classList.add('invalid'); input.classList.remove('valid');
     err.classList.add('show');
   } else {
@@ -3341,16 +3352,26 @@ function isValidEmail(email) {
 }
 
 function isValidPassword(password) {
-  return password.length >= 6;
+  return password.length >= 8;
 }
 
 function validateLoginInputs() {
   const email = document.getElementById('login-email').value.trim();
   const password = document.getElementById('login-password').value;
+
+  // Validate email first
   if(!email) { setAuthError('login-error', 'Please enter your email address'); return false; }
-  if(!isValidEmail(email)) { setAuthError('login-error', 'Please enter a valid email address'); return false; }
+  if(!isValidEmail(email)) { setAuthError('login-error', 'Please enter a valid email address (e.g. name@gmail.com)'); return false; }
+
+  // Validate password
   if(!password) { setAuthError('login-error', 'Please enter your password'); return false; }
-  if(!isValidPassword(password)) { setAuthError('login-error', 'Password must be at least 6 characters'); return false; }
+  if(password.length < 8) { setAuthError('login-error', 'Password must be at least 8 characters'); return false; }
+
+  // Block login button visually if fields are still invalid
+  const emailInput = document.getElementById('login-email');
+  const passInput = document.getElementById('login-password');
+  if(emailInput.classList.contains('invalid') || passInput.classList.contains('invalid')) return false;
+
   return true;
 }
 
