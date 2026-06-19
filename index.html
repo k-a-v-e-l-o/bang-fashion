@@ -2676,9 +2676,18 @@ function toggleTheme() {
 // ─── CURSOR ───
 
 // ─── LOADER ───
-setTimeout(() => {
-  document.getElementById('loader').classList.add('done');
-}, 2000);
+function dismissLoader() {
+  const loader = document.getElementById('loader');
+  if(loader) loader.classList.add('done');
+}
+// Always dismiss after 2.5s no matter what
+setTimeout(dismissLoader, 2500);
+// Also dismiss as soon as DOM is ready
+if(document.readyState === 'complete') {
+  setTimeout(dismissLoader, 100);
+} else {
+  window.addEventListener('load', () => setTimeout(dismissLoader, 300));
+}
 
 // ─── NAV ───
 window.addEventListener('scroll', () => {
