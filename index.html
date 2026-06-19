@@ -3095,10 +3095,41 @@ function setAuthSuccess(id, msg) {
   el.textContent = msg; el.classList.add('show');
 }
 
-async function handleLogin() {
+function isValidEmail(email) {
+  return /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(email);
+}
+
+function isValidPassword(password) {
+  return password.length >= 6;
+}
+
+function validateLoginInputs() {
   const email = document.getElementById('login-email').value.trim();
   const password = document.getElementById('login-password').value;
-  if(!email || !password) { setAuthError('login-error', 'Please fill in all fields'); return; }
+  if(!email) { setAuthError('login-error', 'Please enter your email address'); return false; }
+  if(!isValidEmail(email)) { setAuthError('login-error', 'Please enter a valid email address'); return false; }
+  if(!password) { setAuthError('login-error', 'Please enter your password'); return false; }
+  if(!isValidPassword(password)) { setAuthError('login-error', 'Password must be at least 6 characters'); return false; }
+  return true;
+}
+
+function validateRegisterInputs() {
+  const name = document.getElementById('register-name').value.trim();
+  const email = document.getElementById('register-email').value.trim();
+  const password = document.getElementById('register-password').value;
+  if(!name) { setAuthError('register-error', 'Please enter your full name'); return false; }
+  if(name.length < 2) { setAuthError('register-error', 'Name must be at least 2 characters'); return false; }
+  if(!email) { setAuthError('register-error', 'Please enter your email address'); return false; }
+  if(!isValidEmail(email)) { setAuthError('register-error', 'Please enter a valid email address (e.g. name@example.com)'); return false; }
+  if(!password) { setAuthError('register-error', 'Please enter a password'); return false; }
+  if(!isValidPassword(password)) { setAuthError('register-error', 'Password must be at least 6 characters'); return false; }
+  return true;
+}
+
+async function handleLogin() {
+  if(!validateLoginInputs()) return;
+  const email = document.getElementById('login-email').value.trim();
+  const password = document.getElementById('login-password').value;
   try {
     const res = await fetch(`${API}/api/customers/login`, {
       method:'POST', headers:{'Content-Type':'application/json'},
@@ -3118,12 +3149,11 @@ async function handleLogin() {
 }
 
 async function handleRegister() {
+  if(!validateRegisterInputs()) return;
   const name = document.getElementById('register-name').value.trim();
   const email = document.getElementById('register-email').value.trim();
   const phone = document.getElementById('register-phone').value.trim();
   const password = document.getElementById('register-password').value;
-  if(!name || !email || !password) { setAuthError('register-error', 'Please fill in all required fields'); return; }
-  if(password.length < 6) { setAuthError('register-error', 'Password must be at least 6 characters'); return; }
   try {
     const res = await fetch(`${API}/api/customers/register`, {
       method:'POST', headers:{'Content-Type':'application/json'},
