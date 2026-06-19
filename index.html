@@ -3364,11 +3364,8 @@ function isValidEmail(email) {
     'museum','travel','jobs','int','post','arpa',
   ];
 
-  if (!commonTLDs.includes(tld)) {
-    // If TLD not in list, do a heuristic check: 2-4 chars, no repeats
-    if (tld.length < 2 || tld.length > 4) return false;
-    if (/(.)\1+/.test(tld)) return false; // any repeated char in short TLD is sus
-  }
+  // Strict whitelist — if not in list, reject immediately
+  if (!commonTLDs.includes(tld)) return false;
 
   return true;
 }
