@@ -1609,6 +1609,87 @@ html[data-theme="light"] button.cat-btn {
   background: rgba(8,8,8,0.5);
 }
 
+/* ─── AUTH MODAL ─── */
+#auth-modal {
+  position:fixed; inset:0; z-index:7000;
+  background:rgba(0,0,0,.88); backdrop-filter:blur(10px);
+  display:flex; align-items:center; justify-content:center;
+  padding:1.5rem;
+  opacity:0; visibility:hidden;
+  transition:opacity .35s, visibility .35s;
+}
+#auth-modal.open { opacity:1; visibility:visible; }
+.auth-box {
+  background:var(--dark); border:1px solid var(--border);
+  width:100%; max-width:440px;
+  padding:2.5rem 2rem;
+  position:relative;
+  transform:scale(.95) translateY(20px);
+  transition:transform .35s cubic-bezier(.25,.46,.45,.94);
+}
+#auth-modal.open .auth-box { transform:scale(1) translateY(0); }
+.auth-close {
+  position:absolute; top:1rem; right:1rem;
+  width:32px; height:32px; border-radius:50%;
+  background:rgba(255,255,255,.07); color:var(--white);
+  display:flex; align-items:center; justify-content:center;
+  font-size:1rem;
+}
+.auth-tabs {
+  display:flex; gap:0; margin-bottom:2rem;
+  border-bottom:1px solid var(--border);
+}
+.auth-tab {
+  flex:1; padding:.8rem;
+  font-size:.65rem; letter-spacing:.2em; text-transform:uppercase; font-weight:700;
+  color:var(--muted); border-bottom:2px solid transparent;
+  transition:color .2s, border-color .2s;
+  margin-bottom:-1px;
+}
+.auth-tab.active { color:var(--gold); border-bottom-color:var(--gold); }
+.auth-panel { display:none; flex-direction:column; gap:1rem; }
+.auth-panel.active { display:flex; }
+.auth-title {
+  font-family:'Bebas Neue',sans-serif; font-size:2rem; letter-spacing:.1em;
+  color:var(--white); margin-bottom:.3rem;
+}
+.auth-sub { font-size:.75rem; color:var(--muted); margin-bottom:.5rem; }
+.auth-input {
+  padding:.85rem 1rem;
+  background:rgba(255,255,255,.04); border:1px solid var(--border);
+  color:var(--white); font-family:'Montserrat',sans-serif; font-size:.85rem;
+  outline:none; transition:border-color .3s; width:100%;
+}
+.auth-input:focus { border-color:var(--gold); }
+.auth-input::placeholder { color:var(--muted); }
+.auth-btn {
+  padding:1rem; background:var(--gold); color:var(--black);
+  font-size:.7rem; letter-spacing:.25em; text-transform:uppercase; font-weight:700;
+  transition:background .25s; width:100%; margin-top:.5rem;
+}
+.auth-btn:hover { background:var(--gold-light); }
+.auth-error { font-size:.75rem; color:#e74c3c; display:none; }
+.auth-error.show { display:block; }
+.auth-success { font-size:.75rem; color:#2ecc71; display:none; }
+.auth-success.show { display:block; }
+.auth-forgot { font-size:.7rem; color:var(--gold); text-align:right; cursor:pointer; }
+.auth-forgot:hover { text-decoration:underline; }
+.auth-user-btn {
+  width:38px; height:38px;
+  border:1px solid var(--border);
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--white); font-size:1rem;
+  transition: border-color .25s, background .25s;
+  background: transparent;
+}
+.auth-user-btn:hover { border-color:var(--gold); background:var(--gold-dim); }
+.auth-user-btn.logged-in { border-color:var(--gold); color:var(--gold); }
+[data-theme="light"] .auth-box { background:#ede8e0; }
+[data-theme="light"] .auth-title { color:#1a1208; }
+[data-theme="light"] .auth-input { background:rgba(26,18,8,.05); border-color:rgba(0,0,0,.15); color:#1a1208; }
+[data-theme="light"] .auth-input::placeholder { color:#8a7d6b; }
+
 /* ─── SIZE GUIDE MODAL ─── */
 .size-modal-wrap{position:fixed;inset:0;z-index:6000;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:2rem;opacity:0;pointer-events:none;transition:opacity .4s}
 .size-modal-wrap.open{opacity:1;pointer-events:all}
@@ -1678,6 +1759,7 @@ html[data-theme="light"] button.cat-btn {
   <a class="mobile-nav-link" href="#reviews" onclick="closeMobileMenu()">Reviews</a>
   <a class="mobile-nav-link" href="#contact" onclick="closeMobileMenu()">Contact</a>
   <a class="mobile-nav-link" href="#" onclick="closeMobileMenu();openSizeModal();return false">Size Guide</a>
+  <a class="mobile-nav-link" href="#" onclick="closeMobileMenu();handleAuthBtnClick();return false" id="mobile-auth-link">Login</a>
 </div>
 
 <!-- PRODUCT MODAL -->
@@ -1764,6 +1846,53 @@ html[data-theme="light"] button.cat-btn {
   </div>
 </div>
 
+<!-- AUTH MODAL -->
+<div id="auth-modal" onclick="handleAuthOverlay(event)">
+  <div class="auth-box">
+    <button class="auth-close" onclick="closeAuthModal()">✕</button>
+    <div class="auth-tabs">
+      <button class="auth-tab active" onclick="switchAuthTab('login')">Login</button>
+      <button class="auth-tab" onclick="switchAuthTab('register')">Register</button>
+    </div>
+
+    <!-- LOGIN PANEL -->
+    <div class="auth-panel active" id="auth-login-panel">
+      <div class="auth-title">Welcome Back</div>
+      <div class="auth-sub">Login to your Bang Fashion account</div>
+      <div class="auth-error" id="login-error"></div>
+      <div class="auth-success" id="login-success"></div>
+      <input class="auth-input" type="email" id="login-email" placeholder="Email address">
+      <input class="auth-input" type="password" id="login-password" placeholder="Password">
+      <div class="auth-forgot" onclick="switchAuthTab('forgot')">Forgot password?</div>
+      <button class="auth-btn" onclick="handleLogin()">Login →</button>
+    </div>
+
+    <!-- REGISTER PANEL -->
+    <div class="auth-panel" id="auth-register-panel">
+      <div class="auth-title">Join Bang</div>
+      <div class="auth-sub">Create your Bang Fashion account</div>
+      <div class="auth-error" id="register-error"></div>
+      <div class="auth-success" id="register-success"></div>
+      <input class="auth-input" type="text" id="register-name" placeholder="Full name">
+      <input class="auth-input" type="email" id="register-email" placeholder="Email address">
+      <input class="auth-input" type="tel" id="register-phone" placeholder="Phone number (optional)">
+      <input class="auth-input" type="password" id="register-password" placeholder="Password (min 6 characters)">
+      <button class="auth-btn" onclick="handleRegister()">Create Account →</button>
+    </div>
+
+    <!-- FORGOT PASSWORD PANEL -->
+    <div class="auth-panel" id="auth-forgot-panel">
+      <div class="auth-title">Reset Password</div>
+      <div class="auth-sub">Enter your email and we'll send a reset link</div>
+      <div class="auth-error" id="forgot-error"></div>
+      <div class="auth-success" id="forgot-success"></div>
+      <input class="auth-input" type="email" id="forgot-email" placeholder="Email address">
+      <button class="auth-btn" onclick="handleForgotPassword()">Send Reset Link →</button>
+      <div class="auth-forgot" onclick="switchAuthTab('login')" style="text-align:center">← Back to Login</div>
+    </div>
+  </div>
+</div>
+
 <!-- SIZE GUIDE MODAL -->
 <div class="size-modal-wrap" id="sizeModal" onclick="closeSizeModalBg(event)">
   <div class="size-modal">
@@ -1809,6 +1938,9 @@ html[data-theme="light"] button.cat-btn {
 <div class="nav-right">
     <button class="theme-toggle" onclick="toggleTheme()" id="theme-toggle" title="Toggle Theme">
       ☀
+    </button>
+    <button class="auth-user-btn" onclick="handleAuthBtnClick()" id="auth-user-btn" title="Account">
+      👤
     </button>
     <div class="nav-cart-wrap">
       <button class="nav-cart-btn" onclick="openCart()" title="Shopping Bag">
@@ -2884,6 +3016,143 @@ function closeMobileProduct() {
   document.getElementById('mobile-product-modal').style.display = 'none';
   document.body.style.overflow = '';
 }
+
+// ─── AUTH ───
+const API = 'https://bang-fashion-production.up.railway.app';
+let currentUser = null;
+
+function openAuthModal(tab='login') {
+  switchAuthTab(tab);
+  document.getElementById('auth-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeAuthModal() {
+  document.getElementById('auth-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function handleAuthOverlay(e) {
+  if(e.target === document.getElementById('auth-modal')) closeAuthModal();
+}
+function switchAuthTab(tab) {
+  document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.auth-panel').forEach(p => p.classList.remove('active'));
+  if(tab === 'login') {
+    document.querySelectorAll('.auth-tab')[0].classList.add('active');
+    document.getElementById('auth-login-panel').classList.add('active');
+  } else if(tab === 'register') {
+    document.querySelectorAll('.auth-tab')[1].classList.add('active');
+    document.getElementById('auth-register-panel').classList.add('active');
+  } else if(tab === 'forgot') {
+    document.getElementById('auth-forgot-panel').classList.add('active');
+  }
+}
+
+function handleAuthBtnClick() {
+  if(currentUser) {
+    if(confirm(`Logged in as ${currentUser.name}\n\nDo you want to logout?`)) {
+      logout();
+    }
+  } else {
+    openAuthModal('login');
+  }
+}
+
+function setAuthError(id, msg) {
+  const el = document.getElementById(id);
+  el.textContent = msg; el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 4000);
+}
+function setAuthSuccess(id, msg) {
+  const el = document.getElementById(id);
+  el.textContent = msg; el.classList.add('show');
+}
+
+async function handleLogin() {
+  const email = document.getElementById('login-email').value.trim();
+  const password = document.getElementById('login-password').value;
+  if(!email || !password) { setAuthError('login-error', 'Please fill in all fields'); return; }
+  try {
+    const res = await fetch(`${API}/api/customers/login`, {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({email, password})
+    });
+    const data = await res.json();
+    if(!res.ok) { setAuthError('login-error', data.error || 'Login failed'); return; }
+    localStorage.setItem('bang-token', data.token);
+    localStorage.setItem('bang-user', JSON.stringify(data.user));
+    currentUser = data.user;
+    updateAuthUI();
+    closeAuthModal();
+    showToast(`Welcome back, ${data.user.name.split(' ')[0]}! 🖤`);
+  } catch(err) {
+    setAuthError('login-error', 'Connection error. Please try again.');
+  }
+}
+
+async function handleRegister() {
+  const name = document.getElementById('register-name').value.trim();
+  const email = document.getElementById('register-email').value.trim();
+  const phone = document.getElementById('register-phone').value.trim();
+  const password = document.getElementById('register-password').value;
+  if(!name || !email || !password) { setAuthError('register-error', 'Please fill in all required fields'); return; }
+  if(password.length < 6) { setAuthError('register-error', 'Password must be at least 6 characters'); return; }
+  try {
+    const res = await fetch(`${API}/api/customers/register`, {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({name, email, phone, password})
+    });
+    const data = await res.json();
+    if(!res.ok) { setAuthError('register-error', data.error || 'Registration failed'); return; }
+    localStorage.setItem('bang-token', data.token);
+    localStorage.setItem('bang-user', JSON.stringify(data.user));
+    currentUser = data.user;
+    updateAuthUI();
+    closeAuthModal();
+    showToast(`Welcome to Bang, ${data.user.name.split(' ')[0]}! 🖤`);
+  } catch(err) {
+    setAuthError('register-error', 'Connection error. Please try again.');
+  }
+}
+
+async function handleForgotPassword() {
+  const email = document.getElementById('forgot-email').value.trim();
+  if(!email) { setAuthError('forgot-error', 'Please enter your email'); return; }
+  setAuthSuccess('forgot-success', 'If this email exists, a reset link has been sent.');
+}
+
+function logout() {
+  localStorage.removeItem('bang-token');
+  localStorage.removeItem('bang-user');
+  currentUser = null;
+  updateAuthUI();
+  showToast('Logged out successfully');
+}
+
+function updateAuthUI() {
+  const btn = document.getElementById('auth-user-btn');
+  const mobileLink = document.getElementById('mobile-auth-link');
+  if(currentUser) {
+    btn.classList.add('logged-in');
+    btn.textContent = currentUser.name.charAt(0).toUpperCase();
+    btn.title = `Logged in as ${currentUser.name}`;
+    if(mobileLink) mobileLink.textContent = `Hi, ${currentUser.name.split(' ')[0]}`;
+  } else {
+    btn.classList.remove('logged-in');
+    btn.textContent = '👤';
+    btn.title = 'Account';
+    if(mobileLink) mobileLink.textContent = 'Login';
+  }
+}
+
+// Restore session on page load
+(function() {
+  const token = localStorage.getItem('bang-token');
+  const user = localStorage.getItem('bang-user');
+  if(token && user) {
+    currentUser = JSON.parse(user);
+    updateAuthUI();
+  }
+})();
 
 // ─── SCROLL REVEAL ───
 const revealEls = document.querySelectorAll('.reveal');
