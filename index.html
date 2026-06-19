@@ -2337,7 +2337,7 @@ html[data-theme="light"] button.cat-btn {
   </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" crossorigin="anonymous"></script>
 <script>
 // ─── SUPABASE INIT ───
 const supabase = window.supabase.createClient(
@@ -3467,27 +3467,35 @@ function updateAuthUI() {
 
 // Restore session on page load
 (async function() {
-  const { data: { session } } = await supabase.auth.getSession();
-  if(session) {
-    const user = session.user;
-    const displayName = user.user_metadata?.name || user.email.split('@')[0];
-    currentUser = { name: displayName, email: user.email, id: user.id };
-    localStorage.setItem('bang-user', JSON.stringify(currentUser));
-    updateAuthUI();
-  }
-  // Listen for auth state changes
-  supabase.auth.onAuthStateChange((_event, session) => {
+  try {
+    const { data: { session } } = await supabase.auth.getSession();
     if(session) {
       const user = session.user;
       const displayName = user.user_metadata?.name || user.email.split('@')[0];
       currentUser = { name: displayName, email: user.email, id: user.id };
       localStorage.setItem('bang-user', JSON.stringify(currentUser));
-    } else {
-      currentUser = null;
-      localStorage.removeItem('bang-user');
+      updateAuthUI();
     }
-    updateAuthUI();
-  });
+  } catch(err) {
+    console.warn('Supabase session restore failed:', err);
+  }
+
+  try {
+    supabase.auth.onAuthStateChange((_event, session) => {
+      if(session) {
+        const user = session.user;
+        const displayName = user.user_metadata?.name || user.email.split('@')[0];
+        currentUser = { name: displayName, email: user.email, id: user.id };
+        localStorage.setItem('bang-user', JSON.stringify(currentUser));
+      } else {
+        currentUser = null;
+        localStorage.removeItem('bang-user');
+      }
+      updateAuthUI();
+    });
+  } catch(err) {
+    console.warn('Supabase auth listener failed:', err);
+  }
 })();
 
 // ─── SCROLL REVEAL ───
