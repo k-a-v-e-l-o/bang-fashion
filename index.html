@@ -3536,7 +3536,7 @@ function updateAuthUI() {
   }
 
   try {
-    supabaseClient.auth..onAuthStateChange((_event, session) => {
+    supabaseClient.auth.onAuthStateChange((_event, session) => {
       if(session) {
         const user = session.user;
         const displayName = user.user_metadata?.name || user.email.split('@')[0];
