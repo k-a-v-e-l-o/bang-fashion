@@ -1338,6 +1338,22 @@ footer {
   .footer-grid { grid-template-columns:1fr; gap:2rem; }
   .footer-brand-name { font-size:2rem; }
   .footer-bottom { flex-direction:column; gap:.5rem; text-align:center; }
+
+  /* TOAST */
+  #toast {
+    top: 5.5rem;
+    bottom: auto;
+    transform: translateX(-50%) translateY(-100px);
+    white-space: normal;
+    max-width: 88%;
+    text-align: center;
+    line-height: 1.5;
+    font-size: .68rem;
+    padding: .75rem 1.4rem;
+  }
+  #toast.show {
+    transform: translateX(-50%) translateY(0);
+  }
 }
 
 @media(max-width:430px) {
@@ -2957,7 +2973,7 @@ function showToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg;
   t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2500);
+  setTimeout(() => t.classList.remove('show'), 3500);
 }
 
 // ─── NEWSLETTER ───
