@@ -2921,6 +2921,38 @@ function updateCartUI() {
 function removeFromCart(idx) {
   cart.splice(idx,1);
   updateCartUI();
+  saveCartToSupabase();
+}
+
+// ─── CART SYNC (Supabase) ───
+async function saveCartToSupabase() {
+  if(!currentUser) return;
+  try {
+    await supabaseClient.from('user_carts').upsert({
+      user_id: currentUser.id,
+      cart_data: cart,
+      updated_at: new Date().toISOString()
+    });
+  } catch(err) {
+    console.warn('Cart sync failed:', err);
+  }
+}
+
+async function loadCartFromSupabase() {
+  if(!currentUser) return;
+  try {
+    const { data, error } = await supabaseClient
+      .from('user_carts')
+      .select('cart_data')
+      .eq('user_id', currentUser.id)
+      .maybeSingle();
+    if(!error && data) {
+      cart = data.cart_data || [];
+      updateCartUI();
+    }
+  } catch(err) {
+    console.warn('Cart load failed:', err);
+  }
 }
 
 function changeQty(delta) {
@@ -2938,6 +2970,7 @@ function addToCartFromModal() {
   if(existing) { existing.qty += selectedQty; }
   else { cart.push({...currentProduct, img: currentProduct.images[0], size: selectedSize, qty: selectedQty}); }
   updateCartUI();
+  saveCartToSupabase();
   closeModal();
   openCart();
   showToast(`${selectedQty > 1 ? selectedQty + 'x ' : ''}Added to bag!`);
@@ -3098,6 +3131,7 @@ function mpAddToCart() {
   if(existing) existing.qty += mpQty;
   else cart.push({...mpProduct, img: mpProduct.images[0], size: mpSize, qty: mpQty});
   updateCartUI();
+  saveCartToSupabase();
   closeMobileProduct();
   openCart();
   showToast(`${mpQty > 1 ? mpQty+'x ' : ''}Added to bag!`);
@@ -3474,6 +3508,7 @@ async function handleLogin() {
     currentUser = { name: displayName, email: user.email, id: user.id };
     localStorage.setItem('bang-user', JSON.stringify(currentUser));
     updateAuthUI();
+    await loadCartFromSupabase();
     closeAuthModal();
     showToast(`Welcome back, ${displayName.split(' ')[0]}! 🖤`);
   } catch(err) {
@@ -3529,6 +3564,8 @@ async function logout() {
   await supabaseClient.auth.signOut();
   currentUser = null;
   localStorage.removeItem('bang-user');
+  cart = [];
+  updateCartUI();
   updateAuthUI();
   showToast('Logged out successfully');
 }
@@ -3559,6 +3596,7 @@ function updateAuthUI() {
       currentUser = { name: displayName, email: user.email, id: user.id };
       localStorage.setItem('bang-user', JSON.stringify(currentUser));
       updateAuthUI();
+      await loadCartFromSupabase();
     }
   } catch(err) {
     console.warn('Supabase session restore failed:', err);
