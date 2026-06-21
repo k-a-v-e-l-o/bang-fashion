@@ -1341,9 +1341,11 @@ footer {
 
   /* TOAST */
   #toast {
-    top: 5.5rem;
+    top: -100px;
     bottom: auto;
-    transform: translateX(-50%) translateY(-100px);
+    left: 50%;
+    transform: translateX(-50%);
+    transition: top .4s cubic-bezier(.25,.46,.45,.94);
     white-space: normal;
     max-width: 88%;
     text-align: center;
@@ -1352,7 +1354,7 @@ footer {
     padding: .75rem 1.4rem;
   }
   #toast.show {
-    transform: translateX(-50%) translateY(0);
+    top: 5.5rem;
   }
 }
 
